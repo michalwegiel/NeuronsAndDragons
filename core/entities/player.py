@@ -25,9 +25,3 @@ class Player:
 
     def describe(self) -> str:
         return f"{self.race.value} {self.player_class.value} from a {self.origin.value} background."
-
-
-import json
-
-p = Player(name="Michal", player_class="Knight", race=Race.GNOME, origin=Origin.CRIMINAL, inventory=["knife"])
-print(json.dumps(p, indent=2, default=vars))
