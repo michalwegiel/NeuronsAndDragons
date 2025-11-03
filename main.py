@@ -3,7 +3,7 @@ from rich.console import Console
 
 from core import GameState
 from core.entities import Player, PlayerClass, Race, Origin, World
-from core.graph import runnable
+from core.graph import build_graph
 
 load_dotenv()
 
@@ -11,6 +11,7 @@ console = Console()
 
 
 def main():
+    graph = build_graph()
     game_state = GameState(
         player=Player(
             name="Michal",
@@ -24,7 +25,7 @@ def main():
     )
     console.print("[bold green]🧙 Welcome to Neurons & Dragons![/bold green]")
     while True:
-        runnable.invoke(game_state)
+        graph.invoke(game_state)
 
 
 if __name__ == "__main__":
