@@ -19,8 +19,7 @@ Your selections shape the world — and the story continues until you decide to 
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/NeuronsAndDragons.git
-cd neurons-and-dragons
+git clone https://github.com/michalwegiel/NeuronsAndDragons.git
 ```
 
 ### 2. Install dependencies
@@ -35,7 +34,7 @@ OPENAI_API_KEY=123456789
 
 ### 4. Run the game
 ```bash
-python neurons_and_dragons_langgraph.py
+python main.py
 ```
 
 Created by **Michal Wegiel** as a small experiment in combining **AI storytelling** with graph-based logic.
