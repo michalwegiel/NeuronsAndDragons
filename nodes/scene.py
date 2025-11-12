@@ -3,8 +3,8 @@ import json
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from rich.console import Console
-from typing import Literal
-from pydantic import BaseModel, Field, TypeAdapter
+from typing import Literal, Optional
+from pydantic import BaseModel, Field
 from rich.prompt import Prompt
 
 from core import GameState
@@ -12,11 +12,11 @@ from core import GameState
 load_dotenv()
 
 console = Console()
-model = ChatOpenAI(model="gpt-5-nano", temperature=0.9)
 
 
 class SceneUpdate(BaseModel):
     narrative: str = Field(description="Story text to display to the player describing what happens next.")
+    summary: str = Field(description="One line summary of scene narrative. Used for history aggregation.")
     user_options: list[str] = Field(
         description=(
             "List of possible actions or dialogue choices the player can take next. "
@@ -31,33 +31,33 @@ class SceneUpdate(BaseModel):
             "Used by the engine to branch the story."
         ),
     )
-    location: str = Field(
+    location: Optional[str] = Field(
+        default=None,
         description="If the player moves to a new location, specify the new location name."
     )
 
 
-scene_update_schema_json = json.dumps(TypeAdapter(SceneUpdate).json_schema(), indent=2)
+model = ChatOpenAI(model="gpt-5-nano", temperature=0.9).with_structured_output(SceneUpdate)
 
 
 def scene(state: GameState) -> GameState:
     state_str = json.dumps(state, indent=2, default=vars)
     prompt = (
-        "You are the Dungeon Master in our fantasy text‐RPG 'Neurons & Dragons'.\n"
+        "You are the Dungeon Master in fantasy text‐RPG 'Neurons & Dragons'.\n"
         f"Here is the current game state:\n{state_str}\n"
-        f"Respond with valid JSON matching this schema:\n{scene_update_schema_json}"
     )
 
-    resp = model.invoke(prompt)
-    content = json.loads(resp.content)
+    response: SceneUpdate = model.invoke(prompt)
 
-    narrative = content["narrative"]
-    user_options = content["user_options"]
-    next_scene_type = content["next_scene_type"]
-    location = content["location"]
+    narrative = response.narrative
+    summary = response.summary
+    user_options = response.user_options
+    next_scene_type = response.next_scene_type
+    location = response.location
 
     console.print("\n" + narrative)
-    state.history.append(f'"dm": {narrative}')
-    state.world.location = location
+    state.history.append(f'"dm": {summary}')
+    state.world.location = location if location is not None else state.world.location
 
     console.print("\n")
     for i, option in enumerate(user_options, 1):
