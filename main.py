@@ -24,8 +24,7 @@ def main():
         history=["The adventure begins!"]
     )
     console.print("[bold green]🧙 Welcome to Neurons & Dragons![/bold green]")
-    while True:
-        graph.invoke(game_state)
+    graph.invoke(game_state)
 
 
 if __name__ == "__main__":

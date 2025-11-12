@@ -1,0 +1,21 @@
+import random
+import re
+
+
+def dice_roll(expr: str = "1d20") -> int:
+    """
+    Rolls dice given a tabletop-style expression like '2d6+3', '1d20', or '3d8-2'.
+    Returns the resulting integer value.
+    """
+    match = re.match(r"(\d*)d(\d+)([+-]\d+)?", expr.strip().lower())
+    if not match:
+        raise ValueError(f"Invalid dice expression: {expr}")
+
+    num_dice = int(match.group(1) or 1)
+    sides = int(match.group(2))
+    modifier = int(match.group(3) or 0)
+
+    rolls = [random.randint(1, sides) for _ in range(num_dice)]
+    total = sum(rolls) + modifier
+
+    return total
