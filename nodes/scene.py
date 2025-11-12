@@ -43,8 +43,10 @@ model = ChatOpenAI(model="gpt-5-nano", temperature=0.9).with_structured_output(S
 def scene(state: GameState) -> GameState:
     state_str = json.dumps(state, indent=2, default=vars)
     prompt = (
-        "You are the Dungeon Master in fantasy text‐RPG 'Neurons & Dragons'.\n"
-        f"Here is the current game state:\n{state_str}\n"
+        "You are the Dungeon Master in a fantasy text RPG called 'Neurons & Dragons'.\n"
+        "Generate the next scene based on the current game state below.\n"
+        "Respond strictly following the SceneUpdate schema.\n\n"
+        f"Current game state:\n{state_str}\n"
     )
 
     response: SceneUpdate = model.invoke(prompt)
