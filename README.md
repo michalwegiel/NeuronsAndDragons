@@ -16,10 +16,13 @@ Your selections shape the world — and the story continues until you decide to 
 ---
 
 ## Graph schema
-<p>
-  <img src="data/images/graph.png" alt="graph"/>
-</p>
 
+<div style="display: flex; justify-content: center;">
+  <img src="data/images/graph.png" alt="graph">
+</div>
+
+
+---
 
 ## 🚀 Quick Start
 
