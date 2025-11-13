@@ -15,6 +15,12 @@ Your selections shape the world — and the story continues until you decide to 
 
 ---
 
+## Graph schema
+<p>
+  <img src="data/images/graph.png" alt="graph"/>
+</p>
+
+
 ## 🚀 Quick Start
 
 ### 1. Clone the repository
