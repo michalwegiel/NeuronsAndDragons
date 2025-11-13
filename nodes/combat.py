@@ -9,7 +9,7 @@ from rich.console import Console
 from rich.prompt import Prompt
 
 from core import GameState
-from core.utils import dice_roll
+from nodes.utils import dice_roll
 
 
 load_dotenv()

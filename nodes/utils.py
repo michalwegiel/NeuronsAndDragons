@@ -1,6 +1,12 @@
 import random
 import re
 
+from rich.console import Console
+from rich.prompt import Prompt
+
+
+console = Console()
+
 
 def dice_roll(expr: str = "1d20") -> int:
     """
@@ -19,3 +25,15 @@ def dice_roll(expr: str = "1d20") -> int:
     total = sum(rolls) + modifier
 
     return total
+
+
+def get_player_choice(prompt: str, number_of_choices: int) -> int:
+    while True:
+        try:
+            choice = int(Prompt.ask(f"\n{prompt}").strip())
+            if 1 <= choice <= number_of_choices:
+                break
+            console.print("[red]Invalid choice. Try again.[/red]")
+        except ValueError:
+            console.print("[red]Please enter a number.[/red]")
+    return choice

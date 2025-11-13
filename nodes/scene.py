@@ -5,9 +5,9 @@ from langchain_openai import ChatOpenAI
 from rich.console import Console
 from typing import Literal, Optional
 from pydantic import BaseModel, Field
-from rich.prompt import Prompt
 
 from core import GameState
+from nodes.utils import get_player_choice
 
 load_dotenv()
 
@@ -58,7 +58,7 @@ def scene(state: GameState) -> GameState:
     next_scene_type = response.next_scene_type
     location = response.location
 
-    console.print("\n" + narrative)
+    console.print(f"\n{narrative}\n")
     state.history.append(f'dungeon master: {summary}')
     state.world.location = location if location is not None else state.world.location
 
@@ -66,14 +66,7 @@ def scene(state: GameState) -> GameState:
         console.print(f"{i}) {option}")
     console.print("")
 
-    while True:
-        try:
-            choice = int(Prompt.ask("\nYour action").strip())
-            if 1 <= choice <= len(response.player_choices):
-                break
-            console.print("[red]Invalid choice. Try again.[/red]")
-        except ValueError:
-            console.print("[red]Please enter a number.[/red]")
+    choice = get_player_choice("Your action", len(user_options))
 
     state.scene_type = next_scene_type[choice - 1]
     state.history.append(f'player action: {user_options[choice - 1]}')

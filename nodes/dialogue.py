@@ -7,6 +7,7 @@ from rich.console import Console
 from rich.prompt import Prompt
 
 from core import GameState
+from nodes.utils import get_player_choice
 
 
 class DialogueUpdate(BaseModel):
@@ -44,14 +45,7 @@ def dialogue(state: GameState) -> GameState:
         console.print(f"{i}) {option}")
     console.print("")
 
-    while True:
-        try:
-            choice = int(Prompt.ask("\nYour reply").strip())
-            if 1 <= choice <= len(response.player_choices):
-                break
-            console.print("[red]Invalid choice. Try again.[/red]")
-        except ValueError:
-            console.print("[red]Please enter a number.[/red]")
+    choice = get_player_choice("Your reply", len(response.player_choices))
 
     chosen_reply = response.player_choices[choice - 1]
     next_scene_type = response.next_scene_type[choice - 1]
