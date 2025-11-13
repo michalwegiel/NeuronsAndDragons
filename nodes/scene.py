@@ -45,6 +45,7 @@ def scene(state: GameState) -> GameState:
     prompt = (
         "You are the Dungeon Master in a fantasy text RPG called 'Neurons & Dragons'.\n"
         "Generate the next scene based on the current game state below.\n"
+        "Always try to move the story along.\n"
         "Respond strictly following the SceneUpdate schema.\n\n"
         f"Current game state:\n{state_str}\n"
     )
@@ -58,15 +59,23 @@ def scene(state: GameState) -> GameState:
     location = response.location
 
     console.print("\n" + narrative)
-    state.history.append(f'"dm": {summary}')
+    state.history.append(f'dungeon master: {summary}')
     state.world.location = location if location is not None else state.world.location
 
-    console.print("\n")
     for i, option in enumerate(user_options, 1):
-        console.print(f"{i}) {option}\n")
+        console.print(f"{i}) {option}")
+    console.print("")
 
-    choice = int(Prompt.ask("\nChoose your action").strip())
+    while True:
+        try:
+            choice = int(Prompt.ask("\nYour action").strip())
+            if 1 <= choice <= len(response.player_choices):
+                break
+            console.print("[red]Invalid choice. Try again.[/red]")
+        except ValueError:
+            console.print("[red]Please enter a number.[/red]")
+
     state.scene_type = next_scene_type[choice - 1]
-    state.history.append(f'"player_action": {user_options[choice - 1]}')
+    state.history.append(f'player action: {user_options[choice - 1]}')
 
     return state
