@@ -1,12 +1,11 @@
 from pydantic import BaseModel, Field
-from typing import List, Optional, Literal
+from typing import List, Literal
 from langchain_openai import ChatOpenAI
 
-import json
 from rich.console import Console
-from rich.prompt import Prompt
 
 from core import GameState
+from core.save import save_game
 from nodes.utils import get_player_choice
 
 
@@ -27,7 +26,7 @@ console = Console()
 
 
 def dialogue(state: GameState) -> GameState:
-    state_str = json.dumps(state, indent=2, default=vars)
+    state_str = state.model_dump_json()
     prompt = (
         "You are the Dungeon Master of 'Neurons & Dragons'.\n"
         "The player is now in a dialogue scene. Generate the NPC's dialogue lines, possible player responses, "
@@ -53,4 +52,5 @@ def dialogue(state: GameState) -> GameState:
     state.history.append(f'npc: {response.summary}')
     state.history.append(f'player reply: {chosen_reply}')
 
+    save_game(state)
     return state

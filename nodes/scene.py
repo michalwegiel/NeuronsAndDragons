@@ -1,5 +1,3 @@
-import json
-
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from rich.console import Console
@@ -7,6 +5,7 @@ from typing import Literal, Optional
 from pydantic import BaseModel, Field
 
 from core import GameState
+from core.save import save_game
 from nodes.utils import get_player_choice
 
 load_dotenv()
@@ -41,7 +40,7 @@ model = ChatOpenAI(model="gpt-5-nano", temperature=0.9).with_structured_output(S
 
 
 def scene(state: GameState) -> GameState:
-    state_str = json.dumps(state, indent=2, default=vars)
+    state_str = state.model_dump_json()
     prompt = (
         "You are the Dungeon Master in a fantasy text RPG called 'Neurons & Dragons'.\n"
         "Generate the next scene based on the current game state below.\n"
@@ -71,4 +70,5 @@ def scene(state: GameState) -> GameState:
     state.scene_type = next_scene_type[choice - 1]
     state.history.append(f'player action: {user_options[choice - 1]}')
 
+    save_game(state)
     return state

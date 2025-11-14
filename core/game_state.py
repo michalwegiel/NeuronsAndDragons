@@ -1,12 +1,11 @@
-from dataclasses import dataclass
 from typing import Literal
+from pydantic import BaseModel
 
 from core.entities.player import Player
 from core.entities.world import World
 
 
-@dataclass
-class GameState:
+class GameState(BaseModel):
     player: Player
     world: World
     history: list[str]

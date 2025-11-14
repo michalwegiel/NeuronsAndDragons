@@ -1,5 +1,3 @@
-import json
-
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
@@ -9,6 +7,7 @@ from rich.console import Console
 from rich.prompt import Prompt
 
 from core import GameState
+from core.save import save_game
 from nodes.utils import dice_roll
 
 
@@ -40,7 +39,7 @@ console = Console()
 
 
 def combat(state: GameState) -> GameState:
-    state_str = json.dumps(state, indent=2, default=vars)
+    state_str = state.model_dump_json()
     prompt = (
         "You are the Dungeon Master of 'Neurons & Dragons'.\n"
         "The player is about to enter combat.\n"
@@ -115,5 +114,6 @@ def combat(state: GameState) -> GameState:
                 state.player.add_item(item.name)
             state.history.append(f"Loot obtained: {[item.name for item in setup.loot]}")
 
+    save_game(state)
     return state
 

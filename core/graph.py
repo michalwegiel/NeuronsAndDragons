@@ -5,7 +5,7 @@ from core import GameState
 from nodes import scene, combat, dialogue
 
 
-def build_graph() -> CompiledStateGraph:
+def build_graph(start_node: str = "scene") -> CompiledStateGraph:
     graph = StateGraph(GameState)
     graph.add_node("scene", scene)
     graph.add_node("combat", combat)
@@ -37,5 +37,5 @@ def build_graph() -> CompiledStateGraph:
         },
     )
 
-    graph.set_entry_point("scene")
+    graph.set_entry_point(start_node)
     return graph.compile()
