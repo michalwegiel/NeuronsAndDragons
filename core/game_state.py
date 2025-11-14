@@ -1,6 +1,8 @@
-from typing import Literal
-from pydantic import BaseModel
+from collections import deque
+from typing import Literal, Any
+from pydantic import BaseModel, field_serializer, field_validator
 
+from core.entities.constants import HISTORY_LENGTH
 from core.entities.player import Player
 from core.entities.world import World
 
@@ -8,7 +10,16 @@ from core.entities.world import World
 class GameState(BaseModel):
     player: Player
     world: World
-    history: list[str]
+    history: deque[str]
     scene_type: Literal["exploration", "combat", "dialogue"] = "exploration"
     lore: str | None = None
     exit: bool = False
+
+    @field_serializer("history")
+    def serialize_deque(self, value: deque):
+        return list(value)
+
+    @field_validator("history", mode="before")
+    @classmethod
+    def deserialize_deque(cls, value: Any) -> deque:
+        return deque(value, maxlen=HISTORY_LENGTH)

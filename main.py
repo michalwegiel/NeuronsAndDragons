@@ -1,8 +1,11 @@
+from collections import deque
+
 from dotenv import load_dotenv
 from rich.console import Console
 
 from core import GameState
 from core.entities import Player, PlayerClass, Race, Origin, World
+from core.entities.constants import HISTORY_LENGTH
 from core.graph import build_graph
 from core.save import load_game
 
@@ -21,7 +24,7 @@ def initial_state() -> GameState:
             inventory=["knife"]
         ),
         world=World(location="Emerald Forest", quest="Find the lost relic"),
-        history=["The adventure begins!"]
+        history=deque(["The adventure begins!"], maxlen=HISTORY_LENGTH)
     )
 
 
