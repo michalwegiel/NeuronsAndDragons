@@ -10,7 +10,6 @@ from core import GameState
 from core.save import save_game
 from nodes.utils import dice_roll
 
-
 load_dotenv()
 
 
@@ -68,13 +67,13 @@ def combat(state: GameState) -> GameState:
         )
 
         if action == "attack":
-            #TODO Damage based on eq
-            dmg = dice_roll(f"1d20")
+            # TODO Damage based on eq
+            dmg = dice_roll("1d20")
             enemy.hp -= dmg
             console.print(f"You strike {enemy.name} for [bold]{dmg}[/bold] damage!")
 
         elif action == "use potion":
-            #TODO
+            # TODO
             if player.potions > 0:
                 heal = dice_roll("1d10+10")
                 player.heal(heal)
@@ -93,7 +92,7 @@ def combat(state: GameState) -> GameState:
                 console.print("[red]You fail to escape![/red]")
 
         if enemy.hp > 0:
-            #TODO Calc damage based on eq
+            # TODO Calc damage based on eq
             dmg = dice_roll(f"1d{enemy.attack_max}")
             player.damage(dmg)
             console.print(f"[red]{enemy.name} attacks you for {dmg} damage![/red]\n")
@@ -116,4 +115,3 @@ def combat(state: GameState) -> GameState:
 
     save_game(state)
     return state
-
