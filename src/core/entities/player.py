@@ -1,8 +1,8 @@
 from dataclasses import dataclass, field
 
-from src.core.entities.origin import Origin
-from src.core.entities.race import Race
-from src.core.entities.player_class import PlayerClass
+from core.entities.origin import Origin
+from core.entities.race import Race
+from core.entities.player_class import PlayerClass
 
 
 @dataclass

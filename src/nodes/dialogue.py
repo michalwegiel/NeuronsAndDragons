@@ -4,9 +4,9 @@ from langchain_openai import ChatOpenAI
 
 from rich.console import Console
 
-from src.core import GameState
-from src.core.save import save_game
-from src.nodes.utils import get_player_choice
+from core import GameState
+from core.save import save_game
+from nodes.utils import get_player_choice
 
 
 class DialogueUpdate(BaseModel):

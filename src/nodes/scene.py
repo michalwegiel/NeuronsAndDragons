@@ -4,9 +4,9 @@ from rich.console import Console
 from typing import Literal, Optional
 from pydantic import BaseModel, Field
 
-from src.core import GameState
-from src.core.save import save_game
-from src.nodes.utils import get_player_choice
+from core import GameState
+from core.save import save_game
+from nodes.utils import get_player_choice
 
 load_dotenv()
 

@@ -1,1 +1,1 @@
-from src.core.game_state import GameState
+from core.game_state import GameState

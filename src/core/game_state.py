@@ -2,9 +2,9 @@ from collections import deque
 from typing import Literal, Any
 from pydantic import BaseModel, field_serializer, field_validator
 
-from src.core.entities.constants import HISTORY_LENGTH
-from src.core.entities.player import Player
-from src.core.entities.world import World
+from core.entities.constants import HISTORY_LENGTH
+from core.entities.player import Player
+from core.entities.world import World
 
 
 class GameState(BaseModel):
