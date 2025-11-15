@@ -3,9 +3,9 @@ from collections import deque
 
 import pytest
 
-from core import GameState
-from core.entities import Player, PlayerClass, Race, Origin, World
-from core.entities.constants import HISTORY_LENGTH
+from src.core import GameState
+from src.core.entities import Player, PlayerClass, Race, Origin, World
+from src.core.entities.constants import HISTORY_LENGTH
 
 
 @pytest.fixture(name="game_state")

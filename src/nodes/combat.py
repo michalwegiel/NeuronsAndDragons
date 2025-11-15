@@ -6,9 +6,9 @@ from typing import Optional, List, Literal
 from rich.console import Console
 from rich.prompt import Prompt
 
-from core import GameState
-from core.save import save_game
-from nodes.utils import dice_roll
+from src.core import GameState
+from src.core.save import save_game
+from src.nodes.utils import dice_roll
 
 
 load_dotenv()

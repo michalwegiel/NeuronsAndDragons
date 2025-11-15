@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from datetime import datetime
 
-from core import GameState
+from src.core import GameState
 
 
 def _generate_timestamp() -> str:

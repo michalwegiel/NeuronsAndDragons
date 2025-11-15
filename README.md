@@ -18,7 +18,7 @@ Your selections shape the world — and the story continues until you decide to 
 ## Graph schema
 
 <div style="display: flex; justify-content: center;">
-  <img src="data/images/graph.png" alt="graph">
+  <img src="src/data/images/graph.png" alt="graph">
 </div>
 
 

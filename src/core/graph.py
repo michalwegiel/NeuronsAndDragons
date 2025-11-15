@@ -1,8 +1,8 @@
 from langgraph.graph import StateGraph, END
 from langgraph.graph.state import CompiledStateGraph
 
-from core import GameState
-from nodes import scene, combat, dialogue
+from src.core import GameState
+from src.nodes import scene, combat, dialogue
 
 
 def build_graph(start_node: str = "scene") -> CompiledStateGraph:
