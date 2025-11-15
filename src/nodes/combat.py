@@ -7,10 +7,12 @@ from rich.console import Console
 from rich.prompt import Prompt
 
 from core import GameState
-from core.save import save_game
+from core.save import SaveManager
 from nodes.utils import dice_roll
 
 load_dotenv()
+
+save_manager = SaveManager()
 
 
 class Enemy(BaseModel):
@@ -113,5 +115,5 @@ def combat(state: GameState) -> GameState:
                 state.player.add_item(item.name)
             state.history.append(f"Loot obtained: {[item.name for item in setup.loot]}")
 
-    save_game(state)
+    save_manager.save(state)
     return state

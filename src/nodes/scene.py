@@ -5,7 +5,7 @@ from typing import Literal, Optional
 from pydantic import BaseModel, Field
 
 from core import GameState
-from core.save import save_game
+from core.save import SaveManager
 from nodes.utils import get_player_choice
 
 load_dotenv()
@@ -37,6 +37,7 @@ class SceneUpdate(BaseModel):
 
 
 model = ChatOpenAI(model="gpt-5-nano", temperature=0.9).with_structured_output(SceneUpdate)
+save_manager = SaveManager()
 
 
 def scene(state: GameState) -> GameState:
@@ -70,5 +71,5 @@ def scene(state: GameState) -> GameState:
     state.scene_type = next_scene_type[choice - 1]
     state.history.append(f'player action: {user_options[choice - 1]}')
 
-    save_game(state)
+    save_manager.save(state)
     return state

@@ -5,7 +5,7 @@ from langchain_openai import ChatOpenAI
 from rich.console import Console
 
 from core import GameState
-from core.save import save_game
+from core.save import SaveManager
 from nodes.utils import get_player_choice
 
 
@@ -23,6 +23,7 @@ class DialogueUpdate(BaseModel):
 
 model = ChatOpenAI(model="gpt-5-nano", temperature=0.8).with_structured_output(DialogueUpdate)
 console = Console()
+save_manager = SaveManager()
 
 
 def dialogue(state: GameState) -> GameState:
@@ -52,5 +53,5 @@ def dialogue(state: GameState) -> GameState:
     state.history.append(f'npc: {response.summary}')
     state.history.append(f'player reply: {chosen_reply}')
 
-    save_game(state)
+    save_manager.save(state)
     return state

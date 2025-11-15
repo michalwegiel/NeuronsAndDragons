@@ -1,56 +1,95 @@
 import json
+import os
 from pathlib import Path
 from datetime import datetime
+from typing import Literal
+from cryptography.fernet import Fernet
 
 from core import GameState
 
 
-def _generate_timestamp() -> str:
-    """Returns a filesystem-safe timestamp."""
-    return datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+ENCRYPTED_FILE_HEADER = b"ENCSAVEv1\n"
 
 
-def list_saves(save_dir: str = "saves") -> list[Path]:
-    """Returns all save files sorted newest-first."""
-    save_path = Path(save_dir)
-    if not save_path.exists():
-        return []
-    saves = list(save_path.glob("save_*.json"))
-    return sorted(saves, reverse=True)
+class SaveManager:
+    _instance = None
 
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super(SaveManager, cls).__new__(cls)
+        return cls._instance
 
-def save_game(
-    state: GameState,
-    save_dir: str = "saves",
-    prefix: str = "save"
-) -> Path:
-    save_path = Path(save_dir)
-    save_path.mkdir(parents=True, exist_ok=True)
+    def __init__(
+        self,
+        mode: Literal["development", "production"] = "development",
+        save_dir: str = "saves",
+        prefix: str = "save",
+        encryption_key: bytes | None = None,
+    ):
+        self.mode = mode
+        self.save_dir = Path(save_dir)
+        self.save_dir.mkdir(parents=True, exist_ok=True)
+        self.prefix = prefix
 
-    timestamp = _generate_timestamp()
-    file_path = save_path / f"{prefix}_{timestamp}.json"
+        if encryption_key is None:
+            encryption_key = os.getenv("SAVE_AES_KEY").encode("utf-8")
 
-    json_data = state.model_dump_json(indent=2)
-    file_path.write_text(json_data, encoding="utf-8")
+        if self.mode == "production":
+            if encryption_key is None:
+                raise ValueError("Encryption key must be provided in production mode")
+            self.fernet = Fernet(encryption_key)
+        else:
+            self.fernet = None
 
-    return file_path
+    @staticmethod
+    def _timestamp() -> str:
+        return datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
+    def list_saves(self) -> list[Path]:
+        """Returns save files sorted newest-first."""
+        saves = list(self.save_dir.glob(f"{self.prefix}_*"))
+        return sorted(saves, reverse=True)
 
-def load_game(
-    save_file: Path | None = None,
-    save_dir: str = "saves"
-) -> GameState | None:
-    try:
-        if save_file is None:
-            saves = list_saves(save_dir)
-            if not saves:
-                return None
-            save_file = saves[0]
+    def save(self, state: GameState) -> Path:
+        """Saves game state depending on mode (encrypted or raw JSON)."""
+        timestamp = self._timestamp()
+        file_path = self.save_dir / f"{self.prefix}_{timestamp}.sav"
 
-        json_content = Path(save_file).read_text(encoding="utf-8")
-        state = GameState.model_validate_json(json_content)
-        return state
+        json_data = state.model_dump_json(indent=2)
 
-    except json.JSONDecodeError as e:
-        print(f"Invalid save format: {e}")
-        return None
+        if self.mode == "production":
+            encrypted = self.fernet.encrypt(json_data.encode("utf-8"))
+            file_path.write_bytes(ENCRYPTED_FILE_HEADER + encrypted)
+        elif self.mode == "development":
+            file_path.write_text(json_data, encoding="utf-8")
+        else:
+            raise RuntimeError(f"Unknown save mode. Got: {self.mode}, Available options: 'production', 'development'.")
+
+        return file_path
+
+    def load(self, file_path: Path | None = None) -> GameState | None:
+        """Loads the newest save or a specific one depending on mode."""
+        try:
+            if file_path is None:
+                saves = self.list_saves()
+                if not saves:
+                    return None
+                file_path = saves[0]
+
+            data = file_path.read_bytes()
+
+            if data.startswith(ENCRYPTED_FILE_HEADER):
+                encrypted_payload = data[len(ENCRYPTED_FILE_HEADER):]
+                decrypted = self.fernet.decrypt(encrypted_payload).decode("utf-8")
+                return GameState.model_validate_json(decrypted)
+
+            text = data.decode("utf-8")
+            return GameState.model_validate_json(text)
+
+        except json.JSONDecodeError as e:
+            print(f"Invalid save format: {e}")
+            return None
+
+        except Exception as e:
+            print(f"Could not load save. {e}")
+            return None

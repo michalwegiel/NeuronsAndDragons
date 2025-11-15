@@ -1,3 +1,4 @@
+import os
 from collections import deque
 
 from dotenv import load_dotenv
@@ -7,11 +8,12 @@ from core import GameState
 from core.entities import Player, PlayerClass, Race, Origin, World
 from core.entities.constants import HISTORY_LENGTH
 from core.graph import build_graph
-from core.save import load_game
+from core.save import SaveManager
 
 load_dotenv()
 
 console = Console()
+save_manager = SaveManager(save_dir=os.getenv("SAVE_DIR"))
 
 
 def initial_state() -> GameState:
@@ -31,7 +33,7 @@ def initial_state() -> GameState:
 def main():
     console.print("[bold green]🧙 Welcome to Neurons & Dragons![/bold green]")
 
-    game_state = load_game()
+    game_state = save_manager.load()
     if game_state is None:
         game_state = initial_state()
 
