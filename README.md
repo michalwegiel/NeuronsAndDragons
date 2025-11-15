@@ -1,7 +1,7 @@
 # 🐉 Neurons & Dragons
 
 **Neurons & Dragons** is a minimal text-based RPG powered by AI and [LangGraph](https://github.com/langchain-ai/langgraph).  
-It combines the creativity of large language models with a simple graph-driven game flow — a fusion of *neurons* and *dragons*.
+It combines the creativity of large language models with a simple graph-driven game flow - a fusion of *neurons* and *dragons*.
 
 ---
 
@@ -11,7 +11,7 @@ It combines the creativity of large language models with a simple graph-driven g
 - **OpenAI model** for dynamic scene narration.
 
 Each turn, the AI acts as your **Dungeon Master**, describing scenes and offering choices.  
-Your selections shape the world — and the story continues until you decide to quit.
+Your selections shape the world - and the story continues until you decide to quit.
 
 ---
 
