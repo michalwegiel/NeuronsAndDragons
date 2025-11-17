@@ -17,7 +17,7 @@ class DialogueUpdate(BaseModel):
     player_choices: List[str] = Field(
         description="Available dialogue responses or actions the player can choose. 2–5 options."
     )
-    next_scene_type: List[Literal["narration", "combat", "dialogue"]] = Field(
+    next_scene_type: List[Literal["narration", "combat", "dialogue", "puzzle"]] = Field(
         description="Scene type that follows each player choice, same length as player_choices."
     )
 

@@ -2,7 +2,7 @@ from langgraph.graph import StateGraph, END
 from langgraph.graph.state import CompiledStateGraph
 
 from core import GameState
-from nodes import narration, combat, dialogue, exploration, camp
+from nodes import narration, combat, dialogue, exploration, camp, puzzle
 
 
 def build_graph(start_node: str = "narration") -> CompiledStateGraph:
@@ -12,11 +12,12 @@ def build_graph(start_node: str = "narration") -> CompiledStateGraph:
     graph.add_node("combat", combat)
     graph.add_node("dialogue", dialogue)
     graph.add_node("camp", camp)
+    graph.add_node("puzzle", puzzle)
 
     def next_from_scene(state: GameState):
         if state.exit is True:
             return "END"
-        if state.scene_type not in ("narration", "exploration", "combat", "dialogue", "camp"):
+        if state.scene_type not in ("narration", "exploration", "combat", "dialogue", "camp", "puzzle"):
             state.scene_type = "narration"
         return state.scene_type
 
@@ -40,6 +41,7 @@ def build_graph(start_node: str = "narration") -> CompiledStateGraph:
             "combat": "combat",
             "exploration": "exploration",
             "dialogue": "dialogue",
+            "puzzle": "puzzle"
         },
     )
     graph.add_conditional_edges(
@@ -49,14 +51,24 @@ def build_graph(start_node: str = "narration") -> CompiledStateGraph:
             "combat": "combat",
             "narration": "narration",
             "dialogue": "dialogue",
+            "puzzle": "puzzle"
         },
     )
     graph.add_conditional_edges(
         "camp",
-        lambda s: s.scene_type,
+        next_from_scene,
         {
             "narration": "narration",
             "dialogue": "dialogue",
+        },
+    )
+    graph.add_conditional_edges(
+        "puzzle",
+        next_from_scene,
+        {
+            "narration": "narration",
+            "dialogue": "dialogue",
+            "combat": "combat"
         },
     )
     graph.add_edge("combat", "narration")

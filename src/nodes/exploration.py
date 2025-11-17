@@ -17,7 +17,7 @@ class ExplorationUpdate(BaseModel):
     player_actions: list[str] = Field(
         description="Available actions the player can take. 2–5 options."
     )
-    next_scene_type: list[Literal["narration", "exploration", "combat", "dialogue"]] = Field(
+    next_scene_type: list[Literal["narration", "exploration", "combat", "dialogue", "puzzle"]] = Field(
         description="Scene type that follows each player action, same length as player_actions."
     )
     discoveries: Optional[list[str]] = Field(
@@ -41,7 +41,7 @@ def exploration(state: GameState) -> GameState:
         "HARD RULES (must follow exactly):\n"
         "1) Provide 2–5 player_actions total.\n"
         "2) next_scene_type must be the same length as player_actions and match by index.\n"
-        "3) In this turn, at least one next_scene_type MUST be one of: narration, combat, dialogue (i.e., not exploration).\n"
+        "3) In this turn, at least one next_scene_type MUST be one of: narration, combat, dialogue, puzzle (i.e., not exploration).\n"
         "4) No more than 50% of next_scene_type entries may be 'exploration'.\n"
         "5) If the last two scene types were 'exploration', then:\n"
         "   - Provide AT LEAST two non-exploration next_scene_type options, and\n"
@@ -50,7 +50,7 @@ def exploration(state: GameState) -> GameState:
         "7) Do NOT repeat discoveries, clues, puzzles, or gated areas already encountered.\n"
         "8) Keep momentum: avoid loops like 'explore deeper' repeatedly unless it introduces a clearly new objective, risk, or reward.\n"
         "9) Use the ExplorationUpdate schema strictly.\n\n"
-        "Scene mix targets (soft): narration ~40%, dialogue ~30%, combat ~20%, exploration ≤10–30% depending on pacing.\n"
+        "Scene mix targets (soft): narration ~40%, dialogue or puzzle ~30%, combat ~20%, exploration ≤10–30% depending on pacing.\n"
         "If the recent scenes contain a lot of exploration, bias strongly toward narration/dialogue now.\n"
         "If a threat is imminent, allow combat as a branch but not the only non-exploration option.\n\n"
         f"Current game state (JSON):\n{state_str}\n"
