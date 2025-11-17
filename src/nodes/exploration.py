@@ -8,6 +8,7 @@ from rich.console import Console
 
 from core import GameState
 from core.save import SaveManager
+from nodes.constants import MODEL_NAME
 from nodes.utils import get_player_choice, list_available_player_choices
 
 
@@ -26,7 +27,7 @@ class ExplorationUpdate(BaseModel):
     summary: str = Field(description="One-line summary of what happened in this exploration turn.")
 
 
-model = ChatOpenAI(model="gpt-5-nano", temperature=0.8).with_structured_output(ExplorationUpdate)
+model = ChatOpenAI(model=MODEL_NAME, temperature=0.8).with_structured_output(ExplorationUpdate)
 console = Console()
 
 

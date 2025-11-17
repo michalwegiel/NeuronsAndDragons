@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 
 from core import GameState
 from core.save import SaveManager
+from nodes.constants import MODEL_NAME
 from nodes.utils import get_player_choice, list_available_player_choices
 
 load_dotenv()
@@ -36,7 +37,7 @@ class SceneUpdate(BaseModel):
     )
 
 
-model = ChatOpenAI(model="gpt-5-nano", temperature=0.9).with_structured_output(SceneUpdate)
+model = ChatOpenAI(model=MODEL_NAME, temperature=0.9).with_structured_output(SceneUpdate)
 
 
 def narration(state: GameState) -> GameState:
