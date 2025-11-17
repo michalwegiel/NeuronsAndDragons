@@ -18,12 +18,12 @@ class SceneUpdate(BaseModel):
     summary: str = Field(description="One line summary of scene narrative. Used for history aggregation.")
     user_options: list[str] = Field(
         description=(
-            "List of possible actions or dialogue choices the player can take next. "
+            "List of possible actions the player can take next. "
             "Each option should be a short, self-contained string describing the action. "
             "Depending on situation, user should have at least 2 options and no more than 5."
         )
     )
-    next_scene_type: list[Literal["narration", "exploration", "combat", "dialogue"]] = Field(
+    next_scene_type: list[Literal["narration", "exploration", "combat", "dialogue", "camp"]] = Field(
         description=(
             "A list of appropriate scene types that should occur based on player choice. "
             "Each user option should have corresponding outcome scene type. "
@@ -49,6 +49,7 @@ def narration(state: GameState) -> GameState:
         "- Always push the story forward. Avoid repeating similar actions or loops.\n"
         "- Avoid giving the same exploration choices repeatedly.\n"
         "- Provide meaningful narrative progression.\n"
+        "- Create camp option if player has lower hp than 50.\n"
         "- user_options must be 2–5 items.\n"
         "- next_scene_type MUST have exactly the same length as user_options.\n"
         "- next_scene_type choices should vary depending on the action, not repeat.\n"

@@ -11,7 +11,7 @@ class GameState(BaseModel):
     player: Player
     world: World
     history: deque[str]
-    scene_type: Literal["narration", "exploration", "combat", "dialogue"] = "narration"
+    scene_type: Literal["narration", "exploration", "combat", "dialogue", "camp"] = "narration"
     lore: str | None = None
     exit: bool = False
 
