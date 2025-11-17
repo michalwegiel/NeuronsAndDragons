@@ -6,7 +6,7 @@ from rich.console import Console
 
 from core import GameState
 from core.save import SaveManager
-from nodes.utils import get_player_choice
+from nodes.utils import get_player_choice, list_available_player_choices
 
 
 class DialogueUpdate(BaseModel):
@@ -40,10 +40,7 @@ def dialogue(state: GameState) -> GameState:
     console.print("\n[bold cyan]🗣️ Dialogue begins[/bold cyan]\n")
     console.print(f"[yellow]{response.npc_name}:[/yellow] {response.dialogue}\n")
 
-    for i, option in enumerate(response.player_choices, 1):
-        console.print(f"{i}) {option}")
-    console.print("")
-
+    list_available_player_choices(choices=response.player_choices)
     choice = get_player_choice("Your reply", len(response.player_choices))
 
     chosen_reply = response.player_choices[choice - 1]

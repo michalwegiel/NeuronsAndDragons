@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 
 from core import GameState
 from core.save import SaveManager
-from nodes.utils import get_player_choice
+from nodes.utils import get_player_choice, list_available_player_choices
 
 load_dotenv()
 
@@ -69,10 +69,7 @@ def narration(state: GameState) -> GameState:
     state.history.append(f'dungeon master: {summary}')
     state.world.location = location if location is not None else state.world.location
 
-    for i, option in enumerate(user_options, 1):
-        console.print(f"{i}) {option}")
-    console.print("")
-
+    list_available_player_choices(choices=user_options)
     choice = get_player_choice("Your action", len(user_options))
 
     state.scene_type = next_scene_type[choice - 1]

@@ -8,7 +8,7 @@ from rich.console import Console
 
 from core import GameState
 from core.save import SaveManager
-from nodes.utils import get_player_choice
+from nodes.utils import get_player_choice, list_available_player_choices
 
 
 class ExplorationUpdate(BaseModel):
@@ -66,11 +66,9 @@ def exploration(state: GameState) -> GameState:
             console.print(f"- {discovery}")
         console.print("")
 
-    for i, action in enumerate(response.player_actions, 1):
-        console.print(f"{i}) {action}")
-    console.print("")
-
+    list_available_player_choices(choices=response.player_actions)
     choice = get_player_choice("Your action", len(response.player_actions))
+
     chosen_action = response.player_actions[choice - 1]
     next_scene_type = response.next_scene_type[choice - 1]
     state.scene_type = next_scene_type

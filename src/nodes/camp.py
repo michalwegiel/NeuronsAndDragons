@@ -6,7 +6,7 @@ from rich.console import Console
 
 from core import GameState
 from core.save import SaveManager
-from nodes.utils import get_player_choice
+from nodes.utils import get_player_choice, list_available_player_choices
 
 
 class CampUpdate(BaseModel):
@@ -66,11 +66,10 @@ def camp(state: GameState) -> GameState:
     console.print(f"[green]You recover {restored} HP.[/green]\n")
 
     state.history.append(f'dungeon master: {response.summary}')
-    for i, option in enumerate(response.user_options, 1):
-        console.print(f"{i}) {option}")
-    console.print("")
 
+    list_available_player_choices(choices=response.user_options)
     choice = get_player_choice("Your action", len(response.user_options))
+
     state.scene_type = response.next_scene_type[choice - 1]
     state.history.append(f'player action: {response.user_options[choice - 1]}')
 

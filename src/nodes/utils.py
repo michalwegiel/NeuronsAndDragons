@@ -27,6 +27,12 @@ def dice_roll(expr: str = "1d20") -> int:
     return total
 
 
+def list_available_player_choices(choices: list[str]) -> None:
+    for idx, option in enumerate(choices, 1):
+        console.print(f"{idx}) {option}")
+    console.print("")
+
+
 def get_player_choice(prompt: str, number_of_choices: int) -> int:
     while True:
         try:
