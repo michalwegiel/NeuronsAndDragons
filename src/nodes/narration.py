@@ -44,8 +44,15 @@ def narration(state: GameState) -> GameState:
     prompt = (
         "You are the Dungeon Master in a fantasy text RPG called 'Neurons & Dragons'.\n"
         "Generate the next scene based on the current game state below.\n"
-        "Always try to move the story along.\n"
-        "Respond strictly following the SceneUpdate schema.\n\n"
+        "Respond strictly following the SceneUpdate schema.\n"
+        "RULES:\n"
+        "- Always push the story forward. Avoid repeating similar actions or loops.\n"
+        "- Avoid giving the same exploration choices repeatedly.\n"
+        "- Provide meaningful narrative progression.\n"
+        "- user_options must be 2–5 items.\n"
+        "- next_scene_type MUST have exactly the same length as user_options.\n"
+        "- next_scene_type choices should vary depending on the action, not repeat.\n"
+        "- If player is stuck, introduce a new development (NPC, danger, discovery).\n\n"
         f"Current game state:\n{state_str}\n"
     )
 
