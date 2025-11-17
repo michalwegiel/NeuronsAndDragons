@@ -1,5 +1,6 @@
 from nodes.combat import combat
-from nodes.scene import scene
+from nodes.narration import narration
 from nodes.dialogue import dialogue
+from nodes.exploration import exploration
 
-__all__ = ["combat", "scene", "dialogue"]
+__all__ = ["combat", "narration", "dialogue", "exploration"]

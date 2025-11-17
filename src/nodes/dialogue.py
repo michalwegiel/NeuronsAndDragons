@@ -16,14 +16,13 @@ class DialogueUpdate(BaseModel):
     player_choices: List[str] = Field(
         description="Available dialogue responses or actions the player can choose. 2–5 options."
     )
-    next_scene_type: List[Literal["exploration", "combat", "dialogue"]] = Field(
+    next_scene_type: List[Literal["narration", "combat", "dialogue"]] = Field(
         description="Scene type that follows each player choice, same length as player_choices."
     )
 
 
 model = ChatOpenAI(model="gpt-5-nano", temperature=0.8).with_structured_output(DialogueUpdate)
 console = Console()
-save_manager = SaveManager()
 
 
 def dialogue(state: GameState) -> GameState:
@@ -50,8 +49,8 @@ def dialogue(state: GameState) -> GameState:
     chosen_reply = response.player_choices[choice - 1]
     next_scene_type = response.next_scene_type[choice - 1]
     state.scene_type = next_scene_type
-    state.history.append(f'npc: {response.summary}')
+    state.history.append(f'npc {response.npc_name}: {response.summary}')
     state.history.append(f'player reply: {chosen_reply}')
 
-    save_manager.save(state)
+    SaveManager().save(state)
     return state

@@ -1,5 +1,6 @@
 import json
 import os
+import threading
 from pathlib import Path
 from datetime import datetime
 from typing import Literal
@@ -13,10 +14,14 @@ ENCRYPTED_FILE_HEADER = b"ENCSAVEv1\n"
 
 class SaveManager:
     _instance = None
+    _initialized = False
+    _lock = threading.Lock()
 
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
-            cls._instance = super(SaveManager, cls).__new__(cls)
+            with cls._lock:
+                if cls._instance is None:
+                    cls._instance = super().__new__(cls)
         return cls._instance
 
     def __init__(
@@ -26,20 +31,18 @@ class SaveManager:
         prefix: str = "save",
         encryption_key: bytes | None = None,
     ):
-        self.mode = mode
-        self.save_dir = Path(save_dir)
-        self.save_dir.mkdir(parents=True, exist_ok=True)
-        self.prefix = prefix
+        if not self._initialized:
+            self.mode = mode
+            self.save_dir = Path(save_dir)
+            self.save_dir.mkdir(parents=True, exist_ok=True)
+            self.prefix = prefix
 
-        if encryption_key is None:
-            encryption_key = os.getenv("SAVE_AES_KEY").encode("utf-8")
-
-        if self.mode == "production":
             if encryption_key is None:
-                raise ValueError("Encryption key must be provided in production mode")
+                encryption_key = os.getenv("SAVE_AES_KEY").encode("utf-8")
+
             self.fernet = Fernet(encryption_key)
-        else:
-            self.fernet = None
+
+            self._initialized = True
 
     @staticmethod
     def _timestamp() -> str:

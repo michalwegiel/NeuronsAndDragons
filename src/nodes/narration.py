@@ -23,7 +23,7 @@ class SceneUpdate(BaseModel):
             "Depending on situation, user should have at least 2 options and no more than 5."
         )
     )
-    next_scene_type: list[Literal["exploration", "combat", "dialogue"]] = Field(
+    next_scene_type: list[Literal["narration", "exploration", "combat", "dialogue"]] = Field(
         description=(
             "A list of appropriate scene types that should occur based on player choice. "
             "Each user option should have corresponding outcome scene type. "
@@ -37,10 +37,9 @@ class SceneUpdate(BaseModel):
 
 
 model = ChatOpenAI(model="gpt-5-nano", temperature=0.9).with_structured_output(SceneUpdate)
-save_manager = SaveManager()
 
 
-def scene(state: GameState) -> GameState:
+def narration(state: GameState) -> GameState:
     state_str = state.model_dump_json()
     prompt = (
         "You are the Dungeon Master in a fantasy text RPG called 'Neurons & Dragons'.\n"
@@ -71,5 +70,5 @@ def scene(state: GameState) -> GameState:
     state.scene_type = next_scene_type[choice - 1]
     state.history.append(f'player action: {user_options[choice - 1]}')
 
-    save_manager.save(state)
+    SaveManager().save(state)
     return state

@@ -12,8 +12,6 @@ from nodes.utils import dice_roll
 
 load_dotenv()
 
-save_manager = SaveManager()
-
 
 class Enemy(BaseModel):
     name: str = Field(description="Enemy name, e.g., 'Goblin Scout' or 'Fire Elemental'")
@@ -87,7 +85,7 @@ def combat(state: GameState) -> GameState:
         elif action == "run":
             if dice_roll("1d20") >= enemy.escape_difficulty:
                 console.print("[yellow]You manage to flee safely![/yellow]")
-                state.scene_type = "exploration"
+                state.scene_type = "narration"
                 state.history.append("Player fled from combat")
                 return state
             else:
@@ -102,11 +100,9 @@ def combat(state: GameState) -> GameState:
     if player.hp <= 0:
         console.print("[bold red]💀 You have been defeated![/bold red]")
         state.history.append(f"Player was defeated by {enemy.name}")
-        state.scene_type = "dialogue"
     else:
         console.print(f"[bold green]🏆 You defeated {enemy.name}![/bold green]")
         state.history.append(f"Player defeated {enemy.name}")
-        state.scene_type = "exploration"
 
         if setup.loot:
             console.print("\n[bold yellow]You find some loot:[/bold yellow]")
@@ -115,5 +111,6 @@ def combat(state: GameState) -> GameState:
                 state.player.add_item(item.name)
             state.history.append(f"Loot obtained: {[item.name for item in setup.loot]}")
 
-    save_manager.save(state)
+    state.scene_type = "narration"
+    SaveManager().save(state)
     return state

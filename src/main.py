@@ -37,7 +37,7 @@ def main():
     if game_state is None:
         game_state = initial_state()
 
-    start_node = game_state.scene_type if game_state.scene_type != "exploration" else "scene"
+    start_node = game_state.scene_type
     graph = build_graph(start_node)
     graph.invoke(game_state)
 
