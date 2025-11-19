@@ -1,4 +1,6 @@
 from dotenv import load_dotenv
+from langchain_core.messages import SystemMessage
+from langchain_core.prompts import ChatPromptTemplate, HumanMessagePromptTemplate
 from langchain_openai import ChatOpenAI
 from rich.console import Console
 from typing import Literal, Optional
@@ -42,23 +44,27 @@ model = ChatOpenAI(model=MODEL_NAME, temperature=0.9).with_structured_output(Sce
 
 def narration(state: GameState) -> GameState:
     state_str = state.model_dump_json()
-    prompt = (
-        "You are the Dungeon Master in a fantasy text RPG called 'Neurons & Dragons'.\n"
-        "Generate the next scene based on the current game state below.\n"
-        "Respond strictly following the SceneUpdate schema.\n"
-        "RULES:\n"
-        "- Always push the story forward. Avoid repeating similar actions or loops.\n"
-        "- Avoid giving the same exploration choices repeatedly.\n"
-        "- Provide meaningful narrative progression.\n"
-        "- Create camp option if player has lower hp than 50.\n"
-        "- user_options must be 2–5 items.\n"
-        "- next_scene_type MUST have exactly the same length as user_options.\n"
-        "- next_scene_type choices should vary depending on the action, not repeat.\n"
-        "- If player is stuck, introduce a new development (NPC, danger, discovery).\n\n"
-        f"Current game state:\n{state_str}\n"
+    prompt = ChatPromptTemplate(
+        [
+            SystemMessage(
+                "You are the Dungeon Master in a fantasy text RPG called 'Neurons & Dragons'.\n"
+                "Generate the next scene based on the current game state below.\n"
+                "Respond strictly following the SceneUpdate schema.\n"
+                "RULES:\n"
+                "- Always push the story forward. Avoid repeating similar actions or loops.\n"
+                "- Avoid giving the same exploration choices repeatedly.\n"
+                "- Provide meaningful narrative progression.\n"
+                "- Create camp option if player has lower hp than 50.\n"
+                "- user_options must be 2–5 items.\n"
+                "- next_scene_type MUST have exactly the same length as user_options.\n"
+                "- next_scene_type choices should vary depending on the action, not repeat.\n"
+                "- If player is stuck, introduce a new development (NPC, danger, discovery)."
+            ),
+            HumanMessagePromptTemplate.from_template("Current game state:\n{state}"),
+        ]
     )
-
-    response: SceneUpdate = model.invoke(prompt)
+    chain = prompt | model
+    response: SceneUpdate = chain.invoke({"state": state_str})
 
     narrative = response.narrative
     summary = response.summary
