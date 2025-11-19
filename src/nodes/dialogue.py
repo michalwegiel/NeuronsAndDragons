@@ -29,9 +29,12 @@ console = Console()
 def dialogue(state: GameState) -> GameState:
     state_str = state.model_dump_json()
     prompt = (
-        "You are the Dungeon Master of 'Neurons & Dragons'.\n"
+        "You are the Dungeon Master in a fantasy text RPG called 'Neurons & Dragons'.\n"
         "The player is now in a dialogue scene. Generate the NPC's dialogue lines, possible player responses, "
         "and how the scene can branch next. Keep it concise and immersive.\n"
+        "RULES:\n"
+        "- Never repeat the exact same dialogue or player options from previous scenes.\n"
+        "- Branching options must meaningfully change the situation.\n"
         "Use the DialogueUpdate schema strictly.\n\n"
         f"Current game state:\n{state_str}\n"
     )

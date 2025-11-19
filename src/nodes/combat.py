@@ -40,7 +40,7 @@ console = Console()
 def combat(state: GameState) -> GameState:
     state_str = state.model_dump_json()
     prompt = (
-        "You are the Dungeon Master of 'Neurons & Dragons'.\n"
+        "You are the Dungeon Master in a fantasy text RPG called 'Neurons & Dragons'.\n"
         "The player is about to enter combat.\n"
         "Generate the enemy they are about to face, the introduction narrative, and possible loot.\n"
         "Adjust difficulty to feel fair based on game state.\n"

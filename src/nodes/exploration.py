@@ -34,7 +34,7 @@ console = Console()
 def exploration(state: GameState) -> GameState:
     state_str = state.model_dump_json()
     prompt = (
-        "You are the Dungeon Master of 'Neurons & Dragons'.\n"
+        "You are the Dungeon Master in a fantasy text RPG called 'Neurons & Dragons'.\n"
         "The player is now in an exploration scene. Describe the surroundings, "
         "possible actions, any items, clues, or puzzles the player can discover, "
         "and how the scene can branch next. Keep it immersive and consequential.\n"
