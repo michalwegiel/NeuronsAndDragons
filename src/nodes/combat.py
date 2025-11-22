@@ -7,7 +7,7 @@ from rich.console import Console
 from rich.prompt import Prompt
 
 from core import GameState
-from core.entities import Enemy, Item, Weapon, Potion, Armor
+from core.entities import Enemy, Item, Weapon, Potion, Armor, Player
 from core.save import SaveManager
 from nodes.utils import dice_roll
 
@@ -28,6 +28,42 @@ class CombatSetup(BaseModel):
 
 model = ChatOpenAI(model="gpt-5-nano", temperature=0.7).with_structured_output(CombatSetup)
 console = Console()
+
+
+def attack(player: Player, enemy: Enemy) -> None:
+    weapon = max(player.inventory.weapons, key=lambda w: w.damage)
+    weapon_dmg = weapon.damage if weapon else 0
+    dmg = dice_roll("1d20") + weapon_dmg
+    enemy.hp -= dmg
+    console.print(
+        f"You strike {enemy.name} {f'with your {weapon.name} ' if weapon is not None else ''}"
+        f"for [bold]{dmg}[/bold] damage!"
+    )
+
+
+def enemy_attack(player: Player, enemy: Enemy) -> None:
+    defense = max([armor.defense for armor in player.inventory.armors] + [0])
+    dmg = int(dice_roll(f"1d{enemy.attack_max}") * (1 - defense / 100))
+    player.damage(dmg)
+    console.print(f"[red]{enemy.name} attacks you for {dmg} damage![/red]\n")
+
+
+def potion(player: Player) -> None:
+    if len(player.inventory.potions) > 0:
+        pot = player.inventory.potions.pop()
+        heal = pot.potency
+        player.heal(heal)
+        console.print(f"You drink a potion and recover [green]{heal}[/green] HP.")
+    else:
+        console.print("[red]No potions left![/red]")
+
+
+def run(enemy: Enemy) -> bool:
+    if dice_roll("1d20") >= enemy.escape_difficulty:
+        console.print("[yellow]You manage to flee safely![/yellow]")
+        return True
+    console.print("[red]You fail to escape![/red]")
+    return False
 
 
 def combat(state: GameState) -> GameState:
@@ -60,37 +96,18 @@ def combat(state: GameState) -> GameState:
         )
 
         if action == "attack":
-            weapon = max(player.inventory.weapons, key=lambda w: w.damage)
-            weapon_dmg = weapon.damage if weapon else 0
-            dmg = dice_roll("1d20") + weapon_dmg
-            enemy.hp -= dmg
-            console.print(
-                f"You strike {enemy.name} {f'with your {weapon.name} ' if weapon is not None else ''}"
-                f"for [bold]{dmg}[/bold] damage!"
-            )
+            attack(player=player, enemy=enemy)
         elif action == "use potion":
-            if len(player.inventory.potions) > 0:
-                potion = player.inventory.potions.pop()
-                heal = potion.potency
-                player.heal(heal)
-                console.print(f"You drink a potion and recover [green]{heal}[/green] HP.")
-            else:
-                console.print("[red]No potions left![/red]")
-
+            potion(player=player)
         elif action == "run":
-            if dice_roll("1d20") >= enemy.escape_difficulty:
-                console.print("[yellow]You manage to flee safely![/yellow]")
+            result = run(enemy=enemy)
+            if result:
                 state.scene_type = "narration"
                 state.history.append("Player fled from combat")
                 return state
-            else:
-                console.print("[red]You fail to escape![/red]")
 
         if enemy.hp > 0:
-            defense = max([armor.defense for armor in player.inventory.armors] + [0])
-            dmg = int(dice_roll(f"1d{enemy.attack_max}") * (1 - defense/100))
-            player.damage(dmg)
-            console.print(f"[red]{enemy.name} attacks you for {dmg} damage![/red]\n")
+            enemy_attack(player=player, enemy=enemy)
 
     if player.hp <= 0:
         console.print("[bold red]💀 You have been defeated![/bold red]")
