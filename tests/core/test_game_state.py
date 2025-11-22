@@ -4,7 +4,7 @@ from collections import deque
 import pytest
 
 from core import GameState
-from core.entities import Player, PlayerClass, Race, Origin, World
+from core.entities import Player, PlayerClass, Race, Origin, World, Inventory, Weapon
 from core.entities.constants import HISTORY_LENGTH
 
 
@@ -16,7 +16,7 @@ def game_state_fixture() -> GameState:
             player_class=PlayerClass.BARBARIAN,
             race=Race.GNOME,
             origin=Origin.CRIMINAL,
-            inventory=["knife"]
+            inventory=Inventory(weapons=[Weapon(name="Knife", damage=1, weapon_type="dagger")])
         ),
         world=World(location="Emerald Forest", quest="Find the lost relic"),
         history=deque(["The adventure begins!"], maxlen=HISTORY_LENGTH)
@@ -42,7 +42,7 @@ def test_game_state_empty_history_and_inventory() -> None:
             player_class=PlayerClass.PALADIN,
             race=Race.HUMAN,
             origin=Origin.NOBLE,
-            inventory=[]
+            inventory=Inventory()
         ),
         world=World(location="Silent Valley", quest="Survive the night"),
         history=deque([], maxlen=HISTORY_LENGTH)
