@@ -1,36 +1,29 @@
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
-from typing import Optional, List, Literal
+from typing import Optional, List
 
 from rich.console import Console
 from rich.prompt import Prompt
 
 from core import GameState
+from core.entities import Enemy, Item, Weapon, Potion, Armor
 from core.save import SaveManager
 from nodes.utils import dice_roll
 
 load_dotenv()
 
 
-class Enemy(BaseModel):
-    name: str = Field(description="Enemy name, e.g., 'Goblin Scout' or 'Fire Elemental'")
-    description: str = Field(description="Short description of enemy appearance or demeanor")
-    hp: int = Field(description="Enemy health points (HP)")
-    attack_max: int = Field(description="Maximum attack damage per turn")
-    escape_difficulty: int = Field(description="Describes how hard is to escape from enemy in range of 1-20.")
-
-
-class Item(BaseModel):
-    name: str = Field(description="Name of the item")
-    description: Optional[str] = Field(default=None, description="Optional description of the item")
-    rarity: Literal["common", "uncommon", "rare", "epic", "legendary"] = Field(description="Rarity of the item")
-
-
 class CombatSetup(BaseModel):
     narrative: str = Field(description="Story introduction to the fight, setting the mood and tension")
     enemy: Enemy = Field(description="Enemy statistics and description")
-    loot: Optional[List[Item]] = Field(default=None, description="List of items that may drop after victory")
+    loot: Optional[List[Item | Weapon | Armor | Potion]] = Field(
+        default=None,
+        description=(
+            "A list of items that may drop after a victory (0-3 items), "
+            "often nothing of value, but sometimes a real 'treasure'"
+        )
+    )
 
 
 model = ChatOpenAI(model="gpt-5-nano", temperature=0.7).with_structured_output(CombatSetup)
@@ -67,17 +60,19 @@ def combat(state: GameState) -> GameState:
         )
 
         if action == "attack":
-            # TODO Damage based on eq
-            dmg = dice_roll("1d20")
+            weapon = max(player.inventory.weapons, key=lambda w: w.damage)
+            weapon_dmg = weapon.damage if weapon else 0
+            dmg = dice_roll("1d20") + weapon_dmg
             enemy.hp -= dmg
-            console.print(f"You strike {enemy.name} for [bold]{dmg}[/bold] damage!")
-
+            console.print(
+                f"You strike {enemy.name} {f'with your {weapon.name} ' if weapon is not None else ''}"
+                f"for [bold]{dmg}[/bold] damage!"
+            )
         elif action == "use potion":
-            # TODO
-            if player.potions > 0:
-                heal = dice_roll("1d10+10")
+            if len(player.inventory.potions) > 0:
+                potion = player.inventory.potions.pop()
+                heal = potion.potency
                 player.heal(heal)
-                player.potions -= 1
                 console.print(f"You drink a potion and recover [green]{heal}[/green] HP.")
             else:
                 console.print("[red]No potions left![/red]")
@@ -92,8 +87,8 @@ def combat(state: GameState) -> GameState:
                 console.print("[red]You fail to escape![/red]")
 
         if enemy.hp > 0:
-            # TODO Calc damage based on eq
-            dmg = dice_roll(f"1d{enemy.attack_max}")
+            defense = max([armor.defense for armor in player.inventory.armors] + [0])
+            dmg = int(dice_roll(f"1d{enemy.attack_max}") * (1 - defense/100))
             player.damage(dmg)
             console.print(f"[red]{enemy.name} attacks you for {dmg} damage![/red]\n")
 
@@ -108,7 +103,7 @@ def combat(state: GameState) -> GameState:
             console.print("\n[bold yellow]You find some loot:[/bold yellow]")
             for item in setup.loot:
                 console.print(f"• {item.name} ({item.rarity}) - {item.description or ''}")
-                state.player.add_item(item.name)
+                state.player.add_item(item)
             state.history.append(f"Loot obtained: {[item.name for item in setup.loot]}")
 
     state.scene_type = "narration"

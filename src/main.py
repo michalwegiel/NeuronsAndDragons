@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from rich.console import Console
 
 from core import GameState
-from core.entities import Player, PlayerClass, Race, Origin, World
+from core.entities import Player, PlayerClass, Race, Origin, World, Inventory, Weapon
 from core.entities.constants import HISTORY_LENGTH
 from core.graph import build_graph
 from core.save import SaveManager
@@ -23,7 +23,7 @@ def initial_state() -> GameState:
             player_class=PlayerClass.BARBARIAN,
             race=Race.GNOME,
             origin=Origin.CRIMINAL,
-            inventory=["knife"]
+            inventory=Inventory(weapons=[Weapon(name="Knife", damage=1, weapon_type="dagger")])
         ),
         world=World(location="Emerald Forest", quest="Find the lost relic"),
         history=deque(["The adventure begins!"], maxlen=HISTORY_LENGTH)

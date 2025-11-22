@@ -1,5 +1,7 @@
 from dataclasses import dataclass, field
 
+from core.entities.item import Item
+from core.entities.inventory import Inventory
 from core.entities.origin import Origin
 from core.entities.race import Race
 from core.entities.player_class import PlayerClass
@@ -12,10 +14,10 @@ class Player:
     race: Race
     origin: Origin
     hp: int = 100
-    inventory: list[str] = field(default_factory=list)
+    inventory: Inventory = field(default_factory=Inventory)
 
-    def add_item(self, item: str):
-        self.inventory.append(item)
+    def add_item(self, item: Item):
+        self.inventory.add(item)
 
     def damage(self, amount: int):
         self.hp = max(0, self.hp - amount)
