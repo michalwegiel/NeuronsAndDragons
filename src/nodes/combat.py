@@ -22,7 +22,7 @@ class CombatSetup(BaseModel):
         description=(
             "A list of items that may drop after a victory (0-3 items), "
             "often nothing of value, but sometimes a real 'treasure'"
-        )
+        ),
     )
 
 
@@ -89,11 +89,7 @@ def combat(state: GameState) -> GameState:
     while player.hp > 0 and enemy.hp > 0:
         console.print(f"[green]Your HP:[/green] {player.hp} | [red]{enemy.name} HP:[/red] {enemy.hp}\n")
 
-        action = Prompt.ask(
-            "Choose your action",
-            choices=["attack", "use potion", "run"],
-            default="attack"
-        )
+        action = Prompt.ask("Choose your action", choices=["attack", "use potion", "run"], default="attack")
 
         if action == "attack":
             attack(player=player, enemy=enemy)

@@ -34,8 +34,7 @@ class SceneUpdate(BaseModel):
         ),
     )
     location: Optional[str] = Field(
-        default=None,
-        description="If the player moves to a new location, specify the new location name."
+        default=None, description="If the player moves to a new location, specify the new location name."
     )
 
 
@@ -73,14 +72,14 @@ def narration(state: GameState) -> GameState:
     location = response.location
 
     console.print(f"\n{narrative}\n")
-    state.history.append(f'dungeon master: {summary}')
+    state.history.append(f"dungeon master: {summary}")
     state.world.location = location if location is not None else state.world.location
 
     list_available_player_choices(choices=user_options)
     choice = get_player_choice("Your action", len(user_options))
 
     state.scene_type = next_scene_type[choice - 1]
-    state.history.append(f'player action: {user_options[choice - 1]}')
+    state.history.append(f"player action: {user_options[choice - 1]}")
 
     SaveManager().save(state)
     return state

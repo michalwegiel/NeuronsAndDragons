@@ -82,7 +82,7 @@ class SaveManager:
             data = file_path.read_bytes()
 
             if data.startswith(ENCRYPTED_FILE_HEADER):
-                encrypted_payload = data[len(ENCRYPTED_FILE_HEADER):]
+                encrypted_payload = data[len(ENCRYPTED_FILE_HEADER) :]
                 decrypted = self.fernet.decrypt(encrypted_payload).decode("utf-8")
                 return GameState.model_validate_json(decrypted)
 

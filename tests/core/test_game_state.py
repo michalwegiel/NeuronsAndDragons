@@ -16,10 +16,10 @@ def game_state_fixture() -> GameState:
             player_class=PlayerClass.BARBARIAN,
             race=Race.GNOME,
             origin=Origin.CRIMINAL,
-            inventory=Inventory(weapons=[Weapon(name="Knife", damage=1, weapon_type="dagger")])
+            inventory=Inventory(weapons=[Weapon(name="Knife", damage=1, weapon_type="dagger")]),
         ),
         world=World(location="Emerald Forest", quest="Find the lost relic"),
-        history=deque(["The adventure begins!"], maxlen=HISTORY_LENGTH)
+        history=deque(["The adventure begins!"], maxlen=HISTORY_LENGTH),
     )
 
 
@@ -38,14 +38,10 @@ def test_game_state_serialize(game_state):
 def test_game_state_empty_history_and_inventory() -> None:
     game_state = GameState(
         player=Player(
-            name="loner",
-            player_class=PlayerClass.PALADIN,
-            race=Race.HUMAN,
-            origin=Origin.NOBLE,
-            inventory=Inventory()
+            name="loner", player_class=PlayerClass.PALADIN, race=Race.HUMAN, origin=Origin.NOBLE, inventory=Inventory()
         ),
         world=World(location="Silent Valley", quest="Survive the night"),
-        history=deque([], maxlen=HISTORY_LENGTH)
+        history=deque([], maxlen=HISTORY_LENGTH),
     )
 
     game_state_json = game_state.model_dump_json()

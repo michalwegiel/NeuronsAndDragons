@@ -15,15 +15,12 @@ from nodes.utils import get_player_choice, list_available_player_choices
 
 class ExplorationUpdate(BaseModel):
     description: str = Field(description="Narrative description of the environment and situation the player explores.")
-    player_actions: list[str] = Field(
-        description="Available actions the player can take. 2–5 options."
-    )
+    player_actions: list[str] = Field(description="Available actions the player can take. 2–5 options.")
     next_scene_type: list[Literal["narration", "exploration", "combat", "dialogue", "puzzle"]] = Field(
         description="Scene type that follows each player action, same length as player_actions."
     )
     discoveries: Optional[list[Item | str]] = Field(
-        default=None,
-        description="Optional items or clues the player can find in this scene (0-3)."
+        default=None, description="Optional items or clues the player can find in this scene (0-3)."
     )
     summary: str = Field(description="One-line summary of what happened in this exploration turn.")
 

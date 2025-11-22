@@ -34,7 +34,7 @@ jobs:
 
     - name: Black - code formatting
       run: |
-        black --check --line-length 120 src tests
+        black src tests --check --line-length 120
 
     - name: Pylint - static analysis
       run: |

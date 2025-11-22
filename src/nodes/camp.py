@@ -11,12 +11,8 @@ from nodes.utils import get_player_choice, list_available_player_choices
 
 
 class CampUpdate(BaseModel):
-    narrative: str = Field(
-        description="Story text to display to the player."
-    )
-    summary: str = Field(
-        description="One line summary of scene narrative. Used for history aggregation."
-    )
+    narrative: str = Field(description="Story text to display to the player.")
+    summary: str = Field(description="One line summary of scene narrative. Used for history aggregation.")
     user_options: list[str] = Field(
         description=(
             "List of possible actions choices the player can take next. "
@@ -66,13 +62,13 @@ def camp(state: GameState) -> GameState:
     restored = state.player.hp - before
     console.print(f"[green]You recover {restored} HP.[/green]\n")
 
-    state.history.append(f'dungeon master: {response.summary}')
+    state.history.append(f"dungeon master: {response.summary}")
 
     list_available_player_choices(choices=response.user_options)
     choice = get_player_choice("Your action", len(response.user_options))
 
     state.scene_type = response.next_scene_type[choice - 1]
-    state.history.append(f'player action: {response.user_options[choice - 1]}')
+    state.history.append(f"player action: {response.user_options[choice - 1]}")
 
     SaveManager().save(state)
     return state

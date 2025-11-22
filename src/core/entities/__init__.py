@@ -8,5 +8,15 @@ from core.entities.item import Item, Weapon, Potion, Armor
 from core.entities.inventory import Inventory
 
 __all__ = [
-    "Origin", "Player", "PlayerClass", "Race", "World", "Enemy", "Item", "Weapon", "Potion", "Armor", "Inventory"
+    "Origin",
+    "Player",
+    "PlayerClass",
+    "Race",
+    "World",
+    "Enemy",
+    "Item",
+    "Weapon",
+    "Potion",
+    "Armor",
+    "Inventory",
 ]

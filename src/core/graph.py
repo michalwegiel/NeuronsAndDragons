@@ -30,7 +30,7 @@ def build_graph(start_node: str = "narration") -> CompiledStateGraph:
             "exploration": "exploration",
             "dialogue": "dialogue",
             "camp": "camp",
-            "END": END
+            "END": END,
         },
     )
     graph.add_conditional_edges(
@@ -41,18 +41,13 @@ def build_graph(start_node: str = "narration") -> CompiledStateGraph:
             "combat": "combat",
             "exploration": "exploration",
             "dialogue": "dialogue",
-            "puzzle": "puzzle"
+            "puzzle": "puzzle",
         },
     )
     graph.add_conditional_edges(
         "dialogue",
         next_from_scene,
-        {
-            "combat": "combat",
-            "narration": "narration",
-            "dialogue": "dialogue",
-            "puzzle": "puzzle"
-        },
+        {"combat": "combat", "narration": "narration", "dialogue": "dialogue", "puzzle": "puzzle"},
     )
     graph.add_conditional_edges(
         "camp",
@@ -65,11 +60,7 @@ def build_graph(start_node: str = "narration") -> CompiledStateGraph:
     graph.add_conditional_edges(
         "puzzle",
         next_from_scene,
-        {
-            "narration": "narration",
-            "dialogue": "dialogue",
-            "combat": "combat"
-        },
+        {"narration": "narration", "dialogue": "dialogue", "combat": "combat"},
     )
     graph.add_edge("combat", "narration")
 

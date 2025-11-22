@@ -23,10 +23,10 @@ def initial_state() -> GameState:
             player_class=PlayerClass.BARBARIAN,
             race=Race.GNOME,
             origin=Origin.CRIMINAL,
-            inventory=Inventory(weapons=[Weapon(name="Knife", damage=1, weapon_type="dagger")])
+            inventory=Inventory(weapons=[Weapon(name="Knife", damage=1, weapon_type="dagger")]),
         ),
         world=World(location="Emerald Forest", quest="Find the lost relic"),
-        history=deque(["The adventure begins!"], maxlen=HISTORY_LENGTH)
+        history=deque(["The adventure begins!"], maxlen=HISTORY_LENGTH),
     )
 
 

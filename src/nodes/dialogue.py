@@ -50,8 +50,8 @@ def dialogue(state: GameState) -> GameState:
     chosen_reply = response.player_choices[choice - 1]
     next_scene_type = response.next_scene_type[choice - 1]
     state.scene_type = next_scene_type
-    state.history.append(f'npc {response.npc_name}: {response.summary}')
-    state.history.append(f'player reply: {chosen_reply}')
+    state.history.append(f"npc {response.npc_name}: {response.summary}")
+    state.history.append(f"player reply: {chosen_reply}")
 
     SaveManager().save(state)
     return state

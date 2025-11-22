@@ -19,18 +19,12 @@ class PuzzleOption(BaseModel):
 
 
 class PuzzleUpdate(BaseModel):
-    narrative: str = Field(
-        description="Description of the puzzle environment and the puzzle itself."
-    )
+    narrative: str = Field(description="Description of the puzzle environment and the puzzle itself.")
     puzzle_prompt: str = Field(
         description="The riddle, mechanism description, or puzzle challenge presented to the player."
     )
-    summary: str = Field(
-        description="One-line summary for history."
-    )
-    options: List[PuzzleOption] = Field(
-        description="Possible answers/attempts. At least 2, at most 5."
-    )
+    summary: str = Field(description="One-line summary for history.")
+    options: List[PuzzleOption] = Field(description="Possible answers/attempts. At least 2, at most 5.")
 
 
 console = Console()
