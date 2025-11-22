@@ -68,10 +68,10 @@ def puzzle(state: GameState) -> GameState:
 
     if choice.correct:
         console.print("[green]You solved the puzzle![/green]\n")
-        state.history.append(f"player solved the puzzle")
+        state.history.append("player solved the puzzle")
     else:
         console.print("[red]Your attempt fails.[/red]\n")
-        state.history.append(f"player failed to solve the puzzle")
+        state.history.append("player failed to solve the puzzle")
 
     state.scene_type = choice.next_scene_type
 
