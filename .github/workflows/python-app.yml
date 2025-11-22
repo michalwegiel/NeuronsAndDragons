@@ -36,10 +36,6 @@ jobs:
       run: |
         black src tests --check --line-length 120
 
-    - name: Pylint - static analysis
-      run: |
-        pylint src --exit-zero --ignore-patterns=".*test.*"
-
     - name: Lint with flake8
       run: |
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
