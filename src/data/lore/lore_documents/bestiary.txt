@@ -1,0 +1,57 @@
+BESTIARY
+
+1. Whisper Wraith
+•	Origin: Aether overuse
+•	Behavior: Mimics voices of loved ones
+•	Ability: Turns invisible in silence
+•	Threat: Medium-high
+•	Weakness: Discordant sound magic
+
+2. Riftborn Colossus
+•	Origin: Rift anomalies
+•	Behavior: Wanders aimlessly until provoked
+•	Ability: Emits gravity bursts
+•	Threat: Catastrophic
+•	Weakness: Nullbind sigils
+
+3. Emberclaw Drake
+•	Origin: Solara volcano nests
+•	Behavior: Territorial
+•	Ability: Fire-resonant breath
+•	Threat: High
+•	Weakness: Water dreamcrafting
+
+4. Memory Siren
+•	Origin: Shattered Coast ruin-songs
+•	Behavior: Sings emotions from victims
+•	Ability: Steals memories
+•	Threat: Very high
+•	Weakness: Ear-blocking wax, anti-Resonance fields
+
+5. Serathi Mindspinners
+•	Origin: Serpentfolk experiments
+•	Behavior: Hive-minded
+•	Ability: Weave illusions into physical form
+•	Threat: High
+•	Weakness: Blunt force, fire wards
+
+6. Aether Wolf
+•	Origin: Arkin Wildrealms
+•	Behavior: Pack hunters
+•	Ability: Teleport short distances
+•	Threat: Medium
+•	Weakness: Heavy armor
+
+7. Ironbacks
+•	Origin: Khazdun mining caverns
+•	Behavior: Herbivores unless startled
+•	Ability: Unbreakable shell plates
+•	Threat: Low-medium
+•	Weakness: Resonant vibration tools
+
+8. Night-Shade Seraph
+•	Origin: Corrupted Aeon fragment
+•	Behavior: Silent stalkers
+•	Ability: Shadow teleportation
+•	Threat: Extreme
+•	Weakness: Direct sunlight

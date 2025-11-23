@@ -7,3 +7,6 @@ pytest~=9.0.1
 cryptography~=46.0.3
 black
 pylint
+langchain-chroma>=0.1.2
+langchain-text-splitters
+langchain~=1.0.3

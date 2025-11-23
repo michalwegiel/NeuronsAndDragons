@@ -1,0 +1,40 @@
+ITEM COMPENDIUM
+
+Weapons
+Dawnstring Blade
+•	Type: Weapon – Sword
+•	Rarity: Epic
+•	Lore: Emits fragments of the first cosmic song.
+•	Effect: Light-damage arcs; blinds shadow creatures.
+Runeforge Greataxe
+•	Type: Weapon – Axe
+•	Rarity: Rare
+•	Effect: Stores kinetic energy and releases a seismic shockwave.
+Echo Bow
+•	Type: Weapon – Bow
+•	Rarity: Legendary
+•	Effect: Arrows duplicate themselves as memory-echo projections.
+
+Potions
+Potion of Solar Blood
+•	Rarity: Rare
+•	Effect: Grants fire resistance + aggression boost.
+Dreamwater Elixir
+•	Rarity: Uncommon
+•	Effect: Allows walking inside dreams for 30 seconds.
+Nullbind Draught
+•	Rarity: Epic
+•	Effect: Temporarily cancels all magic — including the drinker’s.
+
+Artifacts
+Heart of the Fallen Aeon
+•	Rarity: Legendary
+•	Effect: Mutates the wielder; grants cosmic power
+•	Curse: Slowly erases their identity.
+Aether Compass
+•	Rarity: Uncommon
+•	Effect: Points toward the nearest Rift.
+Mask of Many Futures
+•	Rarity: Epic
+•	Effect: Grants glimpses of possible outcomes
+•	Risk: Paralyzing indecision.

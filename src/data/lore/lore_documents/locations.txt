@@ -1,0 +1,44 @@
+LOCATIONS BIBLE
+Below are the major regions, each with unique conflict hooks.
+
+1. The Kingdom of Solara
+Biome: Golden plains, warm climate
+Tone: Heroic + political intrigue
+Known for: Knights, fire-magic orders, ancient sky-city ruins
+Major problem: Civil war brewing between two royal heirs
+Key Mystery: A solar eclipse lasting 7 days foretells the return of the Emberlord.
+
+2. Aethrindor (Elven Dominion)
+Biome: Bioluminescent forests, floating canopies
+Tone: Ancient + mysterious + tragic
+Known for: Memory-trees, Resonance temples
+Major problem: Elves are losing emotions; a curse from the Nightwhisper.
+Key Mystery: A sealed ritual chamber whispers the voices of future selves.
+
+3. The Khazdun Holds
+Biome: Mountains, cavern megacities
+Tone: Gritty + industrial magic
+Known for: Aether-forges, rune-steam technology
+Major problem: Deep tunnels cracking open into Rift zones.
+Key Mystery: The Underdeep seal is weakening.
+
+4. Arkin Wildrealms
+Biome: Forests, tundra, cliff mesas
+Tone: Tribal + spiritual
+Known for: Totem magic, beast harmony
+Major problem: Nature spirits going insane due to corrupted Aeon whispers.
+Key Mystery: A mythic Beast-King returns every 500 years — and it’s overdue.
+
+5. Serathi Enclave
+Biome: Deserts, crystal canyons
+Tone: Eldritch + scholarly
+Known for: Illusion academies, sand-glass magitech
+Major problem: A rogue faction summoned a Rift that now devours memories.
+Key Mystery: They guard a prophecy written in a language that erases itself.
+
+6. The Shattered Coast
+Biome: Jagged islands, shipwreck fields
+Tone: Dark fantasy + pirate frontier
+Known for: Rift storms, mutated sea beasts
+Major problem: A cult worships an unborn Aeon
+Key Mystery: A sunken city sings during storms.
