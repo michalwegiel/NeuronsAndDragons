@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+from langchain.agents import create_agent
 from langchain_core.messages import SystemMessage
 from langchain_core.prompts import ChatPromptTemplate, HumanMessagePromptTemplate
 from langchain_openai import ChatOpenAI
@@ -8,6 +9,7 @@ from pydantic import BaseModel, Field
 
 from core import GameState
 from core.save import SaveManager
+from nodes.lore_search import lore_search
 from nodes.constants import MODEL_NAME
 from nodes.utils import get_player_choice, list_available_player_choices
 
@@ -43,6 +45,19 @@ model = ChatOpenAI(model=MODEL_NAME, temperature=0.9).with_structured_output(Sce
 
 def narration(state: GameState) -> GameState:
     state_str = state.model_dump_json()
+    prompt = (
+        "You are Dungeon Master assistant.\n"
+        "You specialize in lore development.\n"
+        "Base on current game state create a lore information that can be useful for Dungeon Master\n"
+        "Use tool 'lore_search' to retrieve base lore information from RAG Chroma database.\n"
+        "Respond with lore ONLY. Keep it short, only important information."
+    )
+    lore_assistant = create_agent(f"openai:{MODEL_NAME}", [lore_search], system_prompt=prompt)
+    query = f"Create lore information for current game state: \n{state_str}"
+    response = lore_assistant.invoke({"messages": [{"role": "user", "content": query}]})
+    lore = response["messages"][-1].content
+    state.lore = lore
+    state_str = state.model_dump_json()
     prompt = ChatPromptTemplate(
         [
             SystemMessage(
@@ -57,7 +72,7 @@ def narration(state: GameState) -> GameState:
                 "- user_options must be 2–5 items.\n"
                 "- next_scene_type MUST have exactly the same length as user_options.\n"
                 "- next_scene_type choices should vary depending on the action, not repeat.\n"
-                "- If player is stuck, introduce a new development (NPC, danger, discovery)."
+                "- If player is stuck, introduce a new development (NPC, danger, discovery).\n"
             ),
             HumanMessagePromptTemplate.from_template("Current game state:\n{state}"),
         ]

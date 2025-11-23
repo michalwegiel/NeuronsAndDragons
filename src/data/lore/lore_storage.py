@@ -11,7 +11,8 @@ from langchain_chroma import Chroma
 load_dotenv()
 
 
-PERSIST_DIR = "./chroma_langchain_db"
+PROJ_DIR = r"C:\Repositories\NeuronsAndDragons"
+PERSIST_DIR = rf"{PROJ_DIR}\chroma_langchain_db"  # temp solution
 COLLECTION = "lore"
 
 
@@ -24,7 +25,7 @@ def get_vector_store():
         return Chroma(collection_name=COLLECTION, embedding_function=embeddings, persist_directory=PERSIST_DIR)
 
     all_docs = []
-    for path in glob.glob("lore_documents/*.*", recursive=True):
+    for path in glob.glob(f"{PROJ_DIR}/src/data/lore/lore_documents/*.*", recursive=True):
         if path.endswith((".txt", ".md")):
             with open(path, encoding="utf-8") as f:
                 text = f.read()

@@ -1,13 +1,13 @@
-from langchain.tools import tool
+from typing import Annotated
 
 from data.lore.lore_storage import get_vector_store
 
 
-retriever = get_vector_store().as_retriever(search_type="similarity", search_kwargs={"k": 1})
+retriever = get_vector_store().as_retriever(search_type="similarity", search_kwargs={"k": 3})
 
 
-@tool
-def lore_search(query: str) -> str:
+def lore_search(query: Annotated[str, "Search query for setting lore (places, items, history, etc.)"]) -> str:
     """Search the stored RPG lore using semantic embedding search."""
     results = retriever.invoke(query)
-    return "\n\n".join([r.page_content for r in results])
+    serialized = "\n\n".join(f"Source: {doc.metadata}\nContent: {doc.page_content}" for doc in results)
+    return serialized
