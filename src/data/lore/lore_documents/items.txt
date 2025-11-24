@@ -1,40 +1,887 @@
 ITEM COMPENDIUM
 
 Weapons
-Dawnstring Blade
-•	Type: Weapon – Sword
-•	Rarity: Epic
-•	Lore: Emits fragments of the first cosmic song.
-•	Effect: Light-damage arcs; blinds shadow creatures.
-Runeforge Greataxe
-•	Type: Weapon – Axe
-•	Rarity: Rare
-•	Effect: Stores kinetic energy and releases a seismic shockwave.
-Echo Bow
-•	Type: Weapon – Bow
-•	Rarity: Legendary
-•	Effect: Arrows duplicate themselves as memory-echo projections.
+1. Dawnstring Blade
+Type: Sword
+Rarity: Epic
+Attack: 7
+Lore: Emits fragments of the first cosmic song.
+Effect: Light arcs blind shadow creatures.
+
+2. Runeforge Greataxe
+Type: Axe
+Rarity: Rare
+Attack: 6
+Lore: Dwarf-forged with kinetic runes.
+Effect: Stores impact, releasing a seismic shock.
+
+3. Echo Bow
+Type: Bow
+Rarity: Legendary
+Attack: 8
+Lore: Its arrows echo through memory streams.
+Effect: Creates illusory duplicate arrows.
+
+4. Starshatter Spear
+Type: Spear
+Rarity: Legendary
+Attack: 9
+Lore: Forged from astral debris.
+Effect: Armor-piercing starlance burst.
+
+5. Frostbite Chakram
+Type: Thrown
+Rarity: Rare
+Attack: 6
+Lore: Cooled by a glacier spirit.
+Effect: Slows the target’s next action.
+
+6. Emberthorn Rapier
+Type: Rapier
+Rarity: Epic
+Attack: 7
+Lore: Heated by volcanic magic.
+Effect: Critical hits ignite enemies.
+
+7. Mawbreaker Warhammer
+Type: Warhammer
+Rarity: Rare
+Attack: 8
+Lore: Used by titan hunters.
+Effect: Stuns armored foes.
+
+8. Galeweaver Javelin
+Type: Javelin
+Rarity: Uncommon
+Attack: 5
+Lore: Bound with wind glyphs.
+Effect: Returns to the thrower.
+
+9. Shardglass Daggers
+Type: Daggers
+Rarity: Epic
+Attack: 6
+Lore: Forged from black volcanic obsidian.
+Effect: Causes bleeding on hit.
+
+10. Voidreaper Scythe
+Type: Scythe
+Rarity: Legendary
+Attack: 10
+Lore: Cuts through possibility itself.
+Effect: Ignores shields and barriers.
+
+11. Thunderbraid Flail
+Type: Flail
+Rarity: Rare
+Attack: 7
+Lore: Braided with stormsteel.
+Effect: Chance to paralyze.
+
+12. Verdant Grove Staff
+Type: Staff
+Rarity: Uncommon
+Attack: 4
+Lore: Heartwood branch of a tree spirit.
+Effect: Roots target on critical hits.
+
+13. Hexshock Wand
+Type: Wand
+Rarity: Epic
+Attack: 6
+Lore: Houses unstable spell-cores.
+Effect: Can overload for AoE damage.
+
+14. Titanspine Halberd
+Type: Halberd
+Rarity: Epic
+Attack: 8
+Lore: Crafted from giant fossil bones.
+Effect: Extra reach vs larger foes.
+
+15. Silverthorn Longbow
+Type: Bow
+Rarity: Rare
+Attack: 6
+Lore: Fletched with moon-owl feathers.
+Effect: Silent shots reduce detection.
+
+16. Brimstone Cleaver
+Type: Axe
+Rarity: Uncommon
+Attack: 5
+Lore: Smolders with trapped infernal heat.
+Effect: Bonus fire damage.
+
+17. Crystalveil Scepter
+Type: Scepter
+Rarity: Rare
+Attack: 5
+Lore: Grown in arcane crystal gardens.
+Effect: Generates weak magic shields.
+
+18. Sandsplitter Sabre
+Type: Sabre
+Rarity: Uncommon
+Attack: 5
+Lore: Favored by desert walkers.
+Effect: Blinds with sandbursts.
+
+19. Tempest Glaive
+Type: Glaive
+Rarity: Epic
+Attack: 7
+Lore: Hums with bound thunder.
+Effect: Shockwave sweep attack.
+
+20. Moonpetal Knives
+Type: Daggers
+Rarity: Rare
+Attack: 6
+Lore: Made from silvered fae petals.
+Effect: Poison on hit.
+
+21. Bloodsong Blade
+Type: Sword
+Rarity: Legendary
+Attack: 9
+Lore: Resonates with the wielder’s heartbeat.
+Effect: Attack increases as HP drops.
+
+22. Ironhowl Hammer
+Type: Warhammer
+Rarity: Uncommon
+Attack: 5
+Lore: Emits echoing bell tones on impact.
+Effect: Reduces enemy morale.
+
+23. Primalfang Spear
+Type: Spear
+Rarity: Common
+Attack: 3
+Lore: Tipped with beast fang.
+Effect: Extra damage vs beasts.
+
+24. Runeflare Staff
+Type: Staff
+Rarity: Rare
+Attack: 5
+Lore: Engraved with glowing sun runes.
+Effect: Deals mild fire burst.
+
+25. Whisperwind Bow
+Type: Bow
+Rarity: Uncommon
+Attack: 5
+Lore: Silent as a night breeze.
+Effect: Increased stealth accuracy.
+
+26. Blackiron Maul
+Type: Maul
+Rarity: Rare
+Attack: 7
+Lore: Forged from cursed blackiron ore.
+Effect: Heavy hits disrupt magic.
+
+27. Frostbranch Staff
+Type: Staff
+Rarity: Common
+Attack: 3
+Lore: Branch from a winter-sleeping treant.
+Effect: Slows chilled targets.
+
+28. Dreamglass Wand
+Type: Wand
+Rarity: Uncommon
+Attack: 4
+Lore: Used in lucid spellcrafting.
+Effect: Causes minor confusion.
+
+29. Emberroot Club
+Type: Club
+Rarity: Common
+Attack: 2
+Lore: Carved from smoldering rootwood.
+Effect: Chance to burn.
+
+30. Riftshard Blade
+Type: Sword
+Rarity: Epic
+Attack: 8
+Lore: Cut from crystallized rift energy.
+Effect: Random elemental surge.
+
+31. Goldspire Pike
+Type: Pike
+Rarity: Uncommon
+Attack: 5
+Lore: Used by royal guards.
+Effect: Bonus damage vs mounted foes.
+
+32. Stormglass Rod
+Type: Rod
+Rarity: Rare
+Attack: 5
+Lore: Contains a sliver of bottled lightning.
+Effect: Emits small lightning arcs.
+
+33. Emberfury Waraxe
+Type: Axe
+Rarity: Epic
+Attack: 7
+Lore: Used in volcanic war clans.
+Effect: Boosts fire resistance.
+
+34. Spiritcall Flute-Blade
+Type: Hybrid – Blade/Instrument
+Rarity: Rare
+Attack: 4
+Lore: Plays haunting tunes in battle.
+Effect: Summons weak spirit allies.
+
+35. Ashroot Quarterstaff
+Type: Staff
+Rarity: Uncommon
+Attack: 4
+Lore: Made from burned druid groves.
+Effect: Smokescreen parry.
+
+36. Mirrorglass Dagger
+Type: Dagger
+Rarity: Epic
+Attack: 6
+Lore: Reflective blade bends light.
+Effect: Grants brief invisibility on crit.
+
+37. Stonebreaker Pick
+Type: Pick
+Rarity: Common
+Attack: 3
+Lore: Originally a miner’s tool.
+Effect: Extra vs stone/constructs.
+
+38. Aethercoil Whip
+Type: Whip
+Rarity: Rare
+Attack: 5
+Lore: Spirals with raw aether threads.
+Effect: Can pull light enemies.
+
+39. Dragoncrest Lance
+Type: Lance
+Rarity: Legendary
+Attack: 9
+Lore: Encrusted with ancient drakescales.
+Effect: Dragon-slayer bonus.
+
+40. Shadowpetal Blade
+Type: Sword
+Rarity: Rare
+Attack: 6
+Lore: Bloomed in perpetual twilight.
+Effect: Boosts stealth in darkness.
+
+41. Ironleaf Greatbow
+Type: Bow
+Rarity: Epic
+Attack: 7
+Lore: Yew limbs reinforced with ironwood.
+Effect: Pierces heavy armor.
+
+42. Duskweld Hammer
+Type: Hammer
+Rarity: Uncommon
+Attack: 5
+Lore: Glows faintly at sunset.
+Effect: Bonus vs shadow creatures.
+
+43. Quartzspire Wand
+Type: Wand
+Rarity: Common
+Attack: 3
+Lore: Cheap apprentice focus.
+Effect: Weak mana spark.
+
+44. Bloodvine Whip
+Type: Whip
+Rarity: Rare
+Attack: 5
+Lore: Made from vampiric flora.
+Effect: Steals small HP on crit.
+
+45. Runestone Throwing Axe
+Type: Thrown Axe
+Rarity: Uncommon
+Attack: 4
+Lore: Runic stones embedded in the blade.
+Effect: Spins with magical precision.
+
+46. Titanjaw Flail
+Type: Flail
+Rarity: Epic
+Attack: 8
+Lore: Its head is a fossilized titan tooth.
+Effect: Heavy knockback.
+
+47. Skyforged Longsword
+Type: Sword
+Rarity: Epic
+Attack: 7
+Lore: Forged in floating skyforges.
+Effect: Bonus lightning damage.
+
+48. Bonechill Scythe
+Type: Scythe
+Rarity: Rare
+Attack: 6
+Lore: Cold as grave winds.
+Effect: Reduces enemy stamina.
+
+49. Lumenflare Staff
+Type: Staff
+Rarity: Rare
+Attack: 5
+Lore: Pulses with radiant magic.
+Effect: Blinds undead.
+
+50. Tempest-Drift Harpoon
+Type: Harpoon
+Rarity: Uncommon
+Attack: 5
+Lore: Used by storm sailors.
+Effect: Pulls airborne targets.
+
+Armors
+1. Dawnforged Plate
+Type: Heavy Armor
+Rarity: Legendary
+Defense: 9
+Lore: Infused with the last sparks of a dying star.
+Effect: Reduces fire damage; blinds nearby shadows on impact.
+
+2. Whisperleaf Mantle
+Type: Light Armor
+Rarity: Rare
+Defense: 4
+Lore: Worn by fae scouts of the Emerald Courts.
+Effect: Enhances stealth in forests.
+
+3. Runekept Guardmail
+Type: Medium Armor
+Rarity: Epic
+Defense: 7
+Lore: Each plate etched with runes of endurance.
+Effect: Gain a small temporary shield when struck.
+
+4. Stormwoven Robes
+Type: Caster Robes
+Rarity: Epic
+Defense: 3
+Lore: Threads crackle with bottled thunder.
+Effect: Lightning resistance; chance to shock attackers.
+
+5. Ironthorn Carapace
+Type: Heavy Armor
+Rarity: Uncommon
+Defense: 6
+Lore: Reinforced with ironwood spines.
+Effect: Deals minor thorns damage.
+
+6. Frostveil Cloak
+Type: Light Armor
+Rarity: Rare
+Defense: 4
+Lore: Cut from icewolf pelts.
+Effect: Increases cold resistance; hides heat signature.
+
+7. Emberroot Vestments
+Type: Caster Robes
+Rarity: Uncommon
+Defense: 3
+Lore: Grown from magically burned groves.
+Effect: Fire spells cost slightly less mana.
+
+8. Riftguard Harness
+Type: Medium Armor
+Rarity: Legendary
+Defense: 8
+Lore: Stabilized rift energy woven into leather.
+Effect: Reduces dimensional damage.
+
+9. Voidtread Boots
+Type: Boots
+Rarity: Epic
+Defense: 2
+Lore: Soles phase slightly out of reality.
+Effect: Silent movement; immune to caltrops/traps.
+
+10. Skybreaker Helm
+Type: Helmet
+Rarity: Rare
+Defense: 5
+Lore: Designed for skyborne knights.
+Effect: Improves aerial perception.
+
+11. Ashensteel Breastplate
+Type: Heavy Armor
+Rarity: Rare
+Defense: 7
+Lore: Forged from volcanic ore.
+Effect: Reduces burn duration.
+
+12. Silverthread Robes
+Type: Robes
+Rarity: Common
+Defense: 2
+Lore: Traditional apprentice attire.
+Effect: Minor mana regen.
+
+13. Moonshadow Garb
+Type: Light Armor
+Rarity: Epic
+Defense: 5
+Lore: Cloth that absorbs moonlight.
+Effect: Stealth increased during night.
+
+14. Kingsguard Cuirass
+Type: Medium Armor
+Rarity: Uncommon
+Defense: 6
+Lore: Standard armor of the royal guard.
+Effect: Extra defense when stationary.
+
+15. Primalhide Armor
+Type: Light Armor
+Rarity: Common
+Defense: 3
+Lore: Made from the hides of wildrealm beasts.
+Effect: Slight damage boost after taking a hit.
+
+16. Titanbone Pauldrons
+Type: Pauldrons
+Rarity: Epic
+Defense: 5
+Lore: Crafted from ancient giant remains.
+Effect: Reduces stagger.
+
+17. Crystalborn Vest
+Type: Medium Armor
+Rarity: Rare
+Defense: 6
+Lore: Embedded with living arcane crystals.
+Effect: Generates minor shield on crits.
+
+18. Witchwood Cloak
+Type: Cloak
+Rarity: Rare
+Defense: 3
+Lore: Harvested from cursed forests.
+Effect: Resistance to charm & illusions.
+
+19. Bloodwoven Carapace
+Type: Heavy Armor
+Rarity: Epic
+Defense: 8
+Lore: Armor that bonds with its wearer.
+Effect: Heals slightly after each kill.
+
+20. Ironstorm Greaves
+Type: Greaves
+Rarity: Uncommon
+Defense: 4
+Lore: Reinforced against battlefield debris.
+Effect: Reduced knockback.
+
+21. Spiritlace Wraps
+Type: Robes
+Rarity: Rare
+Defense: 2
+Lore: Interlaced with spirit threads.
+Effect: Boost spell range.
+
+22. Thornbound Vest
+Type: Light Armor
+Rarity: Uncommon
+Defense: 4
+Lore: Overgrown with enchanted thorns.
+Effect: Small bleed on melee attackers.
+
+23. Skyforged Lamellar
+Type: Medium Armor
+Rarity: Epic
+Defense: 7
+Lore: Tempered in high-altitude forges.
+Effect: Reduces thunder damage drastically.
+
+24. Bonewarden Plate
+Type: Heavy Armor
+Rarity: Epic
+Defense: 8
+Lore: Used by necropolis guardians.
+Effect: Resistance to necrotic damage.
+
+25. Dreamweft Cloak
+Type: Cloak
+Rarity: Rare
+Defense: 3
+Lore: Stitched from soft fragments of dreamstuff.
+Effect: Sleep and fear resistance.
+
+26. Emberflint Gauntlets
+Type: Gauntlets
+Rarity: Uncommon
+Defense: 2
+Lore: Sharp sparks fall from their joints.
+Effect: Bonus unarmed fire damage.
+
+27. Glacial Bastion Plate
+Type: Heavy Armor
+Rarity: Legendary
+Defense: 10
+Lore: Ice that cannot melt, reforged into metal.
+Effect: Near immunity to frost.
+
+28. Shadowveil Jerkin
+Type: Light Armor
+Rarity: Uncommon
+Defense: 4
+Lore: Fades slightly into darkness.
+Effect: Dodge chance increased.
+
+29. Drakescale Brigandine
+Type: Medium Armor
+Rarity: Rare
+Defense: 7
+Lore: Scales harvested from ember drakes.
+Effect: Fire resistance.
+
+30. Radiant Halo Helm
+Type: Helmet
+Rarity: Epic
+Defense: 5
+Lore: Blessed with celestial light.
+Effect: Undead are partially blinded.
+
+31. Tempestguard Vest
+Type: Medium Armor
+Rarity: Rare
+Defense: 6
+Lore: Crackles when wind blows.
+Effect: Reduces ranged damage.
+
+32. Ironbound Coat
+Type: Light Armor
+Rarity: Common
+Defense: 3
+Lore: Cheap armor for militia fighters.
+Effect: None (reliable, simple).
+
+33. Riftwoven Mantle
+Type: Robes
+Rarity: Epic
+Defense: 3
+Lore: Threads pulse with dimensional echoes.
+Effect: Teleport cooldown reduced.
+
+34. Aetherplate Hauberk
+Type: Heavy Armor
+Rarity: Rare
+Defense: 7
+Lore: Reinforced with aether-purified steel.
+Effect: Magic resistance.
+
+35. Goldleaf Jerkin
+Type: Light Armor
+Rarity: Uncommon
+Defense: 4
+Lore: Treated with royal alchemical lacquer.
+Effect: Better bartering prices.
+
+36. Umbral Chitin Mail
+Type: Medium Armor
+Rarity: Epic
+Defense: 7
+Lore: Made from void-infected insect husks.
+Effect: Resistance to shadow & poison.
+
+37. Stoneskin Harness
+Type: Medium Armor
+Rarity: Common
+Defense: 4
+Lore: Reinforced with mundane rock.
+Effect: Reduces physical chip damage.
+
+38. Phoenixfeather Cloak
+Type: Cloak
+Rarity: Epic
+Defense: 4
+Lore: Woven with immortal feathers.
+Effect: Auto-revive once per day (minor HP).
+
+39. Magebreaker Chain
+Type: Chainmail
+Rarity: Rare
+Defense: 6
+Lore: Repels arcane energy.
+Effect: Reduces incoming spell damage.
+
+40. Faelight Vestments
+Type: Robes
+Rarity: Rare
+Defense: 2
+Lore: Glows softly in sacred groves.
+Effect: Healing spells enhanced.
+
+41. Bramblewoven Coat
+Type: Light Armor
+Rarity: Common
+Defense: 3
+Lore: Rustic armor favored by hunters.
+Effect: Slight tracking bonus.
+
+42. Titanforge Gauntlets
+Type: Gauntlets
+Rarity: Rare
+Defense: 3
+Lore: Heavy enough to crush stone.
+Effect: Boosts strength-based attacks.
+
+43. Starflare Platemail
+Type: Heavy Armor
+Rarity: Legendary
+Defense: 9
+Lore: Forged in a collapsed sunforge.
+Effect: Emits radiant burst when damaged.
+
+44. Gravebound Shroud
+Type: Robes
+Rarity: Uncommon
+Defense: 2
+Lore: Rumored to be worn by spirit mediums.
+Effect: Resistance to fear.
+
+45. Luminous Chaincoat
+Type: Medium Armor
+Rarity: Uncommon
+Defense: 5
+Lore: Rings glow with holy inscriptions.
+Effect: Bonus damage to undead.
+
+46. Briarthorn Mantle
+Type: Cloak
+Rarity: Common
+Defense: 2
+Lore: Thorny cloak providing natural camouflage.
+Effect: Better concealment in nature.
+
+47. Stormherald Helm
+Type: Helmet
+Rarity: Rare
+Defense: 4
+Lore: Crackles faintly with static charge.
+Effect: Slightly increases perception.
+
+48. Dreamsteel Plate
+Type: Heavy Armor
+Rarity: Epic
+Defense: 8
+Lore: Forged of metal found only in lucid realms.
+Effect: Ignores sleep effects.
+
+49. Spellwoven Tunic
+Type: Light Armor
+Rarity: Rare
+Defense: 4
+Lore: Enchanted for novice mages.
+Effect: Small magic shield when casting.
+
+50. Seraphic Aegis Robes
+Type: Robes
+Rarity: Legendary
+Defense: 4
+Lore: Blessed by forgotten sky spirits.
+Effect: Greatly boosts resistance to holy/light damage.
+
 
 Potions
-Potion of Solar Blood
+1. Potion of Solar Blood
 •	Rarity: Rare
 •	Effect: Grants fire resistance + aggression boost.
-Dreamwater Elixir
+2. Dreamwater Elixir
 •	Rarity: Uncommon
 •	Effect: Allows walking inside dreams for 30 seconds.
-Nullbind Draught
+3. Nullbind Draught
 •	Rarity: Epic
 •	Effect: Temporarily cancels all magic — including the drinker’s.
+4. Healt Potion
+•	Rarity: Common
+•	Effect: Restores health and heals wounds even if you are one step away from death.
 
 Artifacts
-Heart of the Fallen Aeon
+1. Heart of the Fallen Aeon
 •	Rarity: Legendary
-•	Effect: Mutates the wielder; grants cosmic power
+•	Effect: Mutates the wielder; grants cosmic power.
 •	Curse: Slowly erases their identity.
-Aether Compass
+2. Aether Compass
 •	Rarity: Uncommon
 •	Effect: Points toward the nearest Rift.
-Mask of Many Futures
+3. Mask of Many Futures
 •	Rarity: Epic
-•	Effect: Grants glimpses of possible outcomes
+•	Effect: Grants glimpses of possible outcomes.
 •	Risk: Paralyzing indecision.
+4. Astral Lodestone
+•	Rarity: Rare
+•	Effect: Pulls loose magic and wandering spirits toward the bearer.
+•	Risk: Attracts unwanted entities.
+5. Obsidian Heartshard
+•	Rarity: Legendary
+•	Effect: Allows resurrection of one fallen ally.
+•	Curse: User permanently loses a cherished memory.
+6. Lantern of the Last Voyage
+•	Rarity: Epic
+•	Effect: Reveals ghosts, illusions, and invisible pathways.
+•	Curse: The bearer is haunted by whispers of drowned sailors.
+7. Cipher Cube of Lorn
+•	Rarity: Rare
+•	Effect: Decodes any ancient script or magical ward.
+•	Drawback: Each use scrambles a short-term memory.
+8. Phoenix Ash Ampoule
+•	Rarity: Uncommon
+•	Effect: Heals fatal wounds once.
+•	Cost: Burns away years of natural lifespan.
+9. Gravetide Locket
+•	Rarity: Epic
+•	Effect: Summons spectral tides to drown enemies.
+•	Curse: The user periodically dreams of their own death.
+10. Soulspine Needle
+•	Rarity: Rare
+•	Effect: Steals a fragment of a foe’s soul, granting temporary stat boosts.
+•	Risk: Needle may store “contaminated” souls.
+11. Veilbreaker Monocle
+•	Rarity: Epic
+•	Effect: Detects dimensional anomalies, shapeshifters, and illusions.
+•	Side Effect: Causes severe migraines after prolonged use.
+12. Prism of Echoed Minds
+•	Rarity: Legendary
+•	Effect: Copies any spell seen once.
+•	Curse: Slowly fractures the caster's personality.
+13. Warden’s Binding Chains
+•	Rarity: Rare
+•	Effect: Immobilizes magical creatures.
+•	Risk: Chains seek to bind the user if overused.
+14. Clock of the Quiet Hour
+•	Rarity: Epic
+•	Effect: Stops time for 5 seconds.
+•	Cost: Ages the user one month.
+15. Drakescale Reliquary
+•	Rarity: Uncommon
+•	Effect: Grants resistance to fire and dragon fear.
+•	Drawback: Emits scent that attracts drakes.
+16. Void Lantern
+•	Rarity: Legendary
+•	Effect: Creates a bubble of darkness that nullifies magic.
+•	Curse: Absorbs the bearer’s emotions over time.
+17. Orb of Forgotten Suns
+•	Rarity: Mythic
+•	Effect: Summons miniature stars for attack or illumination.
+•	Curse: Causes solar hallucinations.
+18. Mourning Bell
+•	Rarity: Epic
+•	Effect: Forces undead to flee or collapse.
+•	Side Effect: Wielder hears constant lamentations.
+19. Mirror of the Other Self
+•	Rarity: Epic
+•	Effect: Allows swapping places with an alternate version of oneself.
+•	Risk: The “other self” might resist returning.
+20. Thorn of Perpetual Hunger
+•	Rarity: Rare
+•	Effect: Drains energy from magical creatures.
+•	Curse: Makes the bearer ravenously hungry for raw mana.
+21. Frozen Eternity Gem
+•	Rarity: Legendary
+•	Effect: Encases a target in unbreakable timeless ice.
+•	Curse: Cold slowly creeps into the user’s veins.
+22. Stormshard Diadem
+•	Rarity: Epic
+•	Effect: Control over local weather patterns.
+•	Risk: Emotional instability triggers storms unintentionally.
+23. Pillar of Silent Oaths
+•	Rarity: Uncommon
+•	Effect: Prevents lies within 10 meters.
+•	Drawback: Wielder also cannot lie.
+24. Gloomroot Idol
+•	Rarity: Rare
+•	Effect: Grants control over shadow vines.
+•	Curse: Shadows cling to the user even in sunlight.
+25. Celestial Archive Shard
+•	Rarity: Epic
+•	Effect: Grants insight into forgotten history.
+•	Risk: Overwhelms the mind with cosmic visions.
+26. Whisper Cage
+•	Rarity: Rare
+•	Effect: Captures spells cast within 10 meters for later release.
+•	Drawback: May accidentally discharge a stored spell.
+27. Ember Crown of Old Kings
+•	Rarity: Legendary
+•	Effect: Grants command over spirits of dead rulers.
+•	Curse: User becomes increasingly tyrannical.
+28. Rune-Drinker Chalice
+•	Rarity: Rare
+•	Effect: Absorbs enchantments from items.
+•	Risk: May corrupt the bearer with unstable magic.
+29. Eclipsed Hourglass
+•	Rarity: Epic
+•	Effect: Rewinds 10 seconds of time.
+•	Cost: Inflicts magical fatigue.
+30. Spirit-Binding Quill
+•	Rarity: Uncommon
+•	Effect: Writes contracts that bind supernatural beings.
+•	Curse: Violating a contract backfires catastrophically.
+31. Archon’s Tear
+•	Rarity: Legendary
+•	Effect: Grants holy immunity and radiant smites.
+•	Curse: User becomes intolerant to darkness—even at night.
+32. Lunar Memory Beads
+•	Rarity: Rare
+•	Effect: Stores memories for playback.
+•	Risk: Stored memories may rewrite themselves.
+33. Tyrant-Breaker Tablet
+•	Rarity: Epic
+•	Effect: Removes magical mind control or domination.
+•	Curse: User becomes painfully aware of all hidden manipulations.
+34. Mawstone of the Deep
+•	Rarity: Rare
+•	Effect: Summons oceanic horrors temporarily.
+•	Curse: Attracts deep-sea nightmares to the user.
+35. Sylvan Songstone
+•	Rarity: Uncommon
+•	Effect: Amplifies druidic and nature spells.
+•	Drawback: Causes uncontrollable plant growth nearby.
+36. Forgeheart Ember
+•	Rarity: Epic
+•	Effect: Repairs or reforges any broken artifact.
+•	Risk: Absorbs a piece of the user’s soul during major repairs.
+37. Cataclysm Bone
+•	Rarity: Mythic
+•	Effect: Unleashes a devastating necrotic blast.
+•	Curse: Each use cracks the bone—and the user’s life force.
+38. Pilgrim’s Infinite Map
+•	Rarity: Rare
+•	Effect: Draws itself as the user travels, revealing secrets.
+•	Side Effect: Sometimes draws places that should not exist.
+39. Dreamwell Vial
+•	Rarity: Epic
+•	Effect: Lets the user enter dreams and alter them.
+•	Risk: May become trapped in a dream reality.
+40. Sunken Oracle Skull
+•	Rarity: Legendary
+•	Effect: Grants prophetic visions of future catastrophes.
+•	Curse: User becomes unable to perceive mundane dangers.
+41. Starbone Flute
+•	Rarity: Epic
+•	Effect: Can calm any beast or summon celestial beasts.
+•	Curse: Playing it drains life energy.
+42. Riftstrider Token
+•	Rarity: Rare
+•	Effect: Teleports the bearer short distances.
+•	Drawback: Leaves behind an echo that may act independently.

@@ -1,57 +1,721 @@
 BESTIARY
 
 1. Whisper Wraith
-•	Origin: Aether overuse
-•	Behavior: Mimics voices of loved ones
-•	Ability: Turns invisible in silence
-•	Threat: Medium-high
-•	Weakness: Discordant sound magic
+Origin: Aether overuse
+HP: 70–110
+Behavior: Mimics familiar voices; avoids loud areas
+Abilities:
+•	Silence Fade: Turns invisible when ambient noise < 5 dB
+•	Echo Lure: Forces target to follow the copied voice
+Threat: Medium–High
+Weakness: Discordant sound magic
+Drops: Wraith Echo Shard (sound-based crafting)
+Combat Style: Hit-and-run, illusionary displacement
 
 2. Riftborn Colossus
-•	Origin: Rift anomalies
-•	Behavior: Wanders aimlessly until provoked
-•	Ability: Emits gravity bursts
-•	Threat: Catastrophic
-•	Weakness: Nullbind sigils
+Origin: Rift anomalies
+HP: 2000–2800
+Behavior: Passive until provoked
+Abilities:
+•	Gravity Burst: AoE crushing pulse
+•	Rift Skin: 50% damage reduction to physical attacks
+Threat: Catastrophic
+Weakness: Nullbind sigils
+Drops: Rift Core Fragment (legendary catalyst)
+Combat Style: Slow but apocalyptic swings and AoE pulses
 
 3. Emberclaw Drake
-•	Origin: Solara volcano nests
-•	Behavior: Territorial
-•	Ability: Fire-resonant breath
-•	Threat: High
-•	Weakness: Water dreamcrafting
+Origin: Solara volcano nests
+HP: 180–260
+Behavior: Highly territorial
+Abilities:
+•	Flame Resonance Breath: Fire DoT + burns armor
+•	Magma Dash: Short explosive charge
+Threat: High
+Weakness: Water dreamcrafting
+Drops: Ember Scales, Lava Gland
+Combat Style: Aggressive, favors burst damage
 
 4. Memory Siren
-•	Origin: Shattered Coast ruin-songs
-•	Behavior: Sings emotions from victims
-•	Ability: Steals memories
-•	Threat: Very high
-•	Weakness: Ear-blocking wax, anti-Resonance fields
+Origin: Shattered Coast ruin-songs
+HP: 90–140
+Behavior: Hypnotic singing
+Abilities:
+•	Mind Drain: Steals memories (reduces INT/WIS)
+•	Emotive Chant: Forces Fear or Charm
+Threat: Very High
+Weakness: Ear-blocking wax, anti-Resonance
+Drops: Siren Pearl
+Combat Style: Psychic debuffing, avoids melee
 
 5. Serathi Mindspinners
-•	Origin: Serpentfolk experiments
-•	Behavior: Hive-minded
-•	Ability: Weave illusions into physical form
-•	Threat: High
-•	Weakness: Blunt force, fire wards
+Origin: Serpentfolk experiments
+HP: 120–160
+Behavior: Hive-minded
+Abilities:
+•	Illusory Manifestation: Creates temporary physical clones
+•	Mindweave Bolt: Psychic damage
+Threat: High
+Weakness: Blunt force, fire wards
+Drops: Mindweave Thread
+Combat Style: Overwhelm through illusions
 
 6. Aether Wolf
-•	Origin: Arkin Wildrealms
-•	Behavior: Pack hunters
-•	Ability: Teleport short distances
-•	Threat: Medium
-•	Weakness: Heavy armor
+Origin: Arkin Wildrealms
+HP: 60–90
+Behavior: Pack hunters
+Abilities:
+•	Blink Strike: Short-range teleport + attack
+•	Howl of Binding: Slows enemies
+Threat: Medium
+Weakness: Heavy armor
+Drops: Aethertouched Fang
+Combat Style: Mobility, coordinated pack attacks
 
-7. Ironbacks
-•	Origin: Khazdun mining caverns
-•	Behavior: Herbivores unless startled
-•	Ability: Unbreakable shell plates
-•	Threat: Low-medium
-•	Weakness: Resonant vibration tools
+7. Ironback
+Origin: Khazdun caverns
+HP: 300–420
+Behavior: Docile unless startled
+Abilities:
+•	Iron Shell Plates: 85% frontal damage reduction
+•	Cavern Roll: Clumsy but powerful rolling attack
+Threat: Low–Medium
+Weakness: Resonant vibration tools
+Drops: Iron Shell Plate
+Combat Style: Defensive, reacts only if endangered
 
 8. Night-Shade Seraph
-•	Origin: Corrupted Aeon fragment
-•	Behavior: Silent stalkers
-•	Ability: Shadow teleportation
-•	Threat: Extreme
-•	Weakness: Direct sunlight
+Origin: Corrupted Aeon fragment
+HP: 500–650
+Behavior: Silent stalker
+Abilities:
+•	Shadowstep: Teleport through darkness
+•	Void Lance: High-damage shadow projectile
+Threat: Extreme
+Weakness: Direct sunlight
+Drops: Corrupted Aeon Feather
+Combat Style: Assassination, burst + vanish
+
+9. Frostbound Lurker
+Origin: Glacial hollow rifts
+HP: 140–190
+Behavior: Ambush predator
+Abilities:
+•	Cryo Grasp: Freezes limbs
+•	Frost Shroud: 30% chance to avoid attacks
+Threat: High
+Weakness: Fire or heat magic
+Drops: Frozen Core
+Combat Style: Surprise immobilization + shred
+
+10. Thornhide Behemoth
+Origin: Primeval forests
+HP: 850–1100
+Behavior: Slow, territorial
+Abilities:
+•	Vine Lash: Reaches long distances
+•	Regrowth: Slowly regenerates HP
+Threat: Very High
+Weakness: Rot or corruption spells
+Drops: Thornhide Bark
+Combat Style: AoE sweeps, root snares
+
+11. Starblood Manticore
+Origin: Fallen star impact sites
+HP: 400–520
+Behavior: Apex predator
+Abilities:
+•	Starlight Barrage: Radiant projectile volley
+•	Venom Tail: Cosmic poison
+Threat: Extreme
+Weakness: Reflective mirrors disrupt starlight
+Drops: Star-Venom Sac
+Combat Style: Aerial superiority + ranged barrages
+
+12. Void Gnawer
+Origin: Deep void fissures
+HP: 80–110
+Behavior: Parasitic, swarms
+Abilities:
+•	Reality Bite: Ignores 30% armor
+•	Void Swarm: Summons more Gnawers
+Threat: Medium–High
+Weakness: Light-based magic
+Drops: None (disintegrates on death)
+Combat Style: Numbers + armor penetration
+
+13. Crystalback Stag
+Origin: Luminous crystal forests
+HP: 200–280
+Behavior: Skittish but noble
+Abilities:
+•	Prismatic Charge: Light-beam antler attack
+•	Crystal Shield: Temporary 50% damage reduction
+Threat: Medium
+Weakness: Sonic damage shatters crystals
+Drops: Prismatic Antler
+Combat Style: Short aggressive bursts, then retreats
+
+14. Sand-Wyrm Apex
+Origin: Endless desert dunes
+HP: 900–1300
+Behavior: Burrows deep, senses vibrations
+Abilities:
+•	Sand Maelstrom: Massive AoE sand vortex
+•	Burrow Ambush: Emerges beneath prey
+Threat: Extreme
+Weakness: Water flooding its tunnels
+Drops: Desert Heartstone
+Combat Style: Hit-from-below and AoE sandstorms
+
+15. Gloomcap Mycelian
+Origin: Fungal swamps
+HP: 100–150
+Behavior: Packs; spreads spores
+Abilities:
+•	Toxic Spores: Poison + hallucinations
+•	Mycelial Mend: Heals nearby allies
+Threat: Medium
+Weakness: Fire, purification magic
+Drops: Gloomcap Spore Pouch
+Combat Style: Debuff + swarm
+
+16. Arcforge Sentinel
+Origin: Ancient automaton ruins
+HP: 600–780
+Behavior: Guards ruins tirelessly
+Abilities:
+•	Arc Cannon: Lightning beam
+•	Runic Overdrive: Temporarily doubles speed
+Threat: Very High
+Weakness: EMP runes / anti-arc wards
+Drops: Arcforge Core
+Combat Style: Ranged devastation + chase
+
+17. Bloodvine Harpy
+Origin: Rock-claw cliffs
+HP: 150–220
+Behavior: Packs; territorial
+Abilities:
+•	Vine Snare: Immobilizes targets
+•	Blood Shriek: Fear-inducing scream
+Threat: High
+Weakness: Sound-reflective shields
+Drops: Harpy Talon, Bloodvine Feather
+Combat Style: Grab, immobilize, aerial strikes
+
+18. Tempest Golem
+Origin: Storm-touched mountain spires
+HP: 700–950
+Behavior: Neutral until approached
+Abilities:
+•	Thunder Pulse: AoE stun
+•	Wind Barrier: Reduces ranged attack damage by 60%
+Threat: Very High
+Weakness: Grounding rods, earth spells
+Drops: Heart of Storm
+Combat Style: Stun + control + high burst
+
+19. Molten Grub Titan
+Origin: Sub-volcanic tunnels
+HP: 500–800
+Behavior: Consumes molten rock
+Abilities:
+•	Lava Spit: High-damage molten stream
+•	Core Overheat: Self-buff increasing damage
+Threat: High
+Weakness: Extreme cold
+Drops: Titan Slag
+Combat Style: Slow, relentless pressure
+
+20. Pale Matriarch
+Origin: Forgotten catacombs
+HP: 260–340
+Behavior: Commands undead brood
+Abilities:
+•	Bone Lash: Multi-hit whip
+•	Necrotic Bloom: Creates undead seedlings
+Threat: Very High
+Weakness: Radiant, holy fire
+Drops: Matriarch’s Skull
+Combat Style: Summoner + controller + DOT
+
+21. Ashen Scythe Revenant
+Origin: Burned-out battlefields
+HP: 180–240
+Behavior: Hunts those carrying fire
+Abilities:
+•	Scythe Sweep: Wide cleaving arc
+•	Ash Cloak: 25% evade chance
+Threat: High
+Weakness: Water + cleansing magic
+Drops: Scorched Scythe Fragment
+Combat Style: Mid-range slashes, ambush bursts
+
+22. Skysteel Roc
+Origin: Cloudforge Peaks
+HP: 900–1200
+Behavior: Soars high, territorial
+Abilities:
+•	Steel-Talon Dive: High-damage dive
+•	Gale Wingbeat: Pushback wind wave
+Threat: Very High
+Weakness: Tethering harpoons
+Drops: Skysteel Feather
+Combat Style: Dive attacks, aerial control
+
+23. Etheric Lamprey
+Origin: Floating mana rivers
+HP: 70–120
+Behavior: Leech-like swarmer
+Abilities:
+•	Mana Drain: Reduces target mana
+•	Phase Swim: Intangible movement
+Threat: Medium
+Weakness: Null arcane fields
+Drops: Mana-Leech Husk
+Combat Style: Latches on, drains resources
+
+24. Boneforge Golem
+Origin: Necro-industrial foundries
+HP: 650–900
+Behavior: Mindless sentinel
+Abilities:
+•	Bone Hammer: Crushing blow
+•	Soul Furnace: AoE necrotic flames
+Threat: Very High
+Weakness: Blessed water
+Drops: Bone Furnace Core
+Combat Style: Slow but overwhelming
+
+25. Miretooth Crocolith
+Origin: Deep marsh deltas
+HP: 280–370
+Behavior: Ambush predator
+Abilities:
+•	Swamp Drag: Pulls target underwater
+•	Rot-Jaw Bite: Inflicts heavy bleed
+Threat: High
+Weakness: Fire, dehydration
+Drops: Miretooth Scale
+Combat Style: Grapple + dragging attacks
+
+26. Stormglass Serpent
+Origin: Crystalline storm caverns
+HP: 230–300
+Behavior: Mesmerizing slither patterns
+Abilities:
+•	Lightning Spit: Electrified beam
+•	Glass Scale Reflect: 20% spell reflect
+Threat: High
+Weakness: Sonic disruption
+Drops: Stormglass Spine
+Combat Style: Mid-range elemental strikes
+
+27. Hollow-Eyed Prophet
+Origin: Forgotten shrines
+HP: 160–210
+Behavior: Mutters omens; unpredictable
+Abilities:
+•	Doom Chant: Applies cursed debuff
+•	Fate Breach: Summons random anomaly
+Threat: High
+Weakness: Breaking its focus (interrupts)
+Drops: Cursed Locket
+Combat Style: Hexes, instability summoning
+
+28. Emberwrought Harvester
+Origin: Infernal metalworks
+HP: 300–450
+Behavior: Collects molten ore
+Abilities:
+•	Molten Scythe: Fire arcs
+•	Heat Pulse: AoE burn
+Threat: High
+Weakness: Extreme cold
+Drops: Wrought Ember Shard
+Combat Style: Fire burst + melee sweeps
+
+29. Veilwidow Spider
+Origin: Shadowed web sanctums
+HP: 120–160
+Behavior: Lurks in webs
+Abilities:
+•	Shadow Web: Paralyzing snare
+•	Venom Bolt: Ranged poison shot
+Threat: Medium–High
+Weakness: Light-based fire
+Drops: Veilwidow Silk
+Combat Style: Traps + poison kiting
+
+30. Granitehorn Ram
+Origin: Titanstone cliffs
+HP: 350–480
+Behavior: Charges threats
+Abilities:
+•	Earthshatter Charge: Stuns on hit
+•	Granite Hide: Reduces physical damage by 40%
+Threat: Medium–High
+Weakness: Piercing weapons
+Drops: Granitehorn Plate
+Combat Style: Repeated high-speed charges
+
+31. Luminant Dryad
+Origin: Sacred sun-groves
+HP: 110–150
+Behavior: Protective nature spirit
+Abilities:
+•	Solar Bloom: Healing aura
+•	Light Lash: Radiant whip
+Threat: Medium
+Weakness: Shadow corruption
+Drops: Sunbloom Petal
+Combat Style: Supportive but dangerous in bursts
+
+32. Cryptroot Ghoul
+Origin: Buried catacomb forests
+HP: 80–130
+Behavior: Silent, ravenous
+Abilities:
+•	Rooted Grasp: Immobilizes
+•	Gnawing Hunger: Bleed damage
+Threat: Medium
+Weakness: Fire
+Drops: Ghoul Root Fragment
+Combat Style: Melee swarms
+
+33. Golemancer’s Idol
+Origin: Arcane artificer vaults
+HP: 500–700
+Behavior: Commands constructs
+Abilities:
+•	Mini-Golem Summon
+•	Arc Burst: AoE damage
+Threat: Very High
+Weakness: Destroying its runic core
+Drops: Golemancer Seal
+Combat Style: Summoner + spellcaster
+
+34. Rift-Scuttler Crab
+Origin: Dimensional beachheads
+HP: 140–200
+Behavior: Skitters unpredictably
+Abilities:
+•	Rift Snap: Teleporting pincer bite
+•	Shell Phase: 30% damage reduction
+Threat: Medium
+Weakness: Force magic
+Drops: Rift-Salt Carapace
+Combat Style: Quick tele-bites
+
+35. Blightbloom Colossus
+Origin: Corrupted fungal forests
+HP: 850–1200
+Behavior: Spreads miasma
+Abilities:
+•	Blight Breath: Toxic cone
+•	Spore Bloom: Summons sporelings
+Threat: Very High
+Weakness: Purification magic
+Drops: Blight Core
+Combat Style: AoE poison + minion waves
+
+36. Skywhisper Faeling
+Origin: Upper aether skies
+HP: 40–70
+Behavior: Mischievous, evasive
+Abilities:
+•	Aether Dart: Small magic bolt
+•	Phase Flicker: Avoids one attack every 10 sec
+Threat: Low
+Weakness: Grounding magic
+Drops: Faeling Dust
+Combat Style: Harassment caster
+
+37. Graveborn Juggernaut
+Origin: War-torn mass graves
+HP: 700–900
+Behavior: Tramples all life
+Abilities:
+•	Rot Slam: Necrotic shockwave
+•	Corpse Shield: Absorbs damage using bodies
+Threat: Very High
+Weakness: Radiant blasts
+Drops: Gravebound Plate
+Combat Style: Heavy bruiser + corpse utility
+
+38. Crystalfeather Griffin
+Origin: Prism mountain plateaus
+HP: 300–420
+Behavior: Nest-guarding
+Abilities:
+•	Crystal Plume Volley: Razor-crystal feathers
+•	Shimmer Shield: Reflects 10% damage
+Threat: High
+Weakness: Sonic attacks
+Drops: Crystalfeather Plume
+Combat Style: Mid-air barrages
+
+39. Embergut Mole Titan
+Origin: Magma-burrow tunnels
+HP: 450–600
+Behavior: Burrows through lava
+Abilities:
+•	Lava Spray: AoE cone
+•	Molten Punch: Heavy melee
+Threat: High
+Weakness: Cold
+Drops: Molten Claw Chunk
+Combat Style: Burrow + eruption
+
+40. Dreadmask Phantom
+Origin: Haunted masquerade halls
+HP: 90–130
+Behavior: Taunts and terrifies
+Abilities:
+•	Mask Swap: Changes type of fear effect
+•	Ethereal Slash: Armor-piercing attack
+Threat: Medium–High
+Weakness: Removing its mask
+Drops: Dreadmask Fragment
+Combat Style: Fear + mobility
+
+41. Chasm Howler
+Origin: Abyssal ravines
+HP: 250–330
+Behavior: Packs, hunts by sound
+Abilities:
+•	Sonic Howl: Damage + disorientation
+•	Echo Pounce: Leap attack
+Threat: High
+Weakness: Silence fields
+Drops: Abyss Echo Bone
+Combat Style: Sound manipulation + leaps
+
+42. Bloodcrown Minotaur
+Origin: Labyrinthine sanctuaries
+HP: 600–780
+Behavior: Frenzied guardian
+Abilities:
+•	Rage Charge: Doubles damage when enraged
+•	Labyrinth Step: Short-range teleport
+Threat: Very High
+Weakness: Calm spells
+Drops: Bloodcrown Horn
+Combat Style: Aggressive melee blitz
+
+43. Zephyr Sylphid
+Origin: High sky currents
+HP: 50–90
+Behavior: Swift and elusive
+Abilities:
+•	Wind Needle: Thin cutting gust
+•	Air Step: Avoids ground attacks
+Threat: Low–Medium
+Weakness: Vacuum spells
+Drops: Sylphid Essence
+Combat Style: Fast ranged caster
+
+44. Furnaceback Beetle
+Origin: Magma caverns
+HP: 180–230
+Behavior: Swarms when threatened
+Abilities:
+•	Thermal Burst: Self-exploding flare
+•	Fire Carapace: Burning touch
+Threat: Medium
+Weakness: Crushing damage
+Drops: Heated Carapace
+Combat Style: Explosive swarmer
+
+45. Evershade Panther
+Origin: Eternal twilight jungles
+HP: 220–300
+Behavior: Silent stalker
+Abilities:
+•	Shadow Prowl: Cloaking
+•	Neck Bite: Crit strike on unaware targets
+Threat: High
+Weakness: Bright light
+Drops: Shadefur Pelt
+Combat Style: Ambush assassin
+
+46. Frostworn Matron
+Origin: Glacial catacombs
+HP: 450–600
+Behavior: Commands frost wights
+Abilities:
+•	Ice Coffin: Freezes + immobilizes
+•	Wintercall: Summons frost spirits
+Threat: Very High
+Weakness: Fire + radiant
+Drops: Matron’s Tear
+Combat Style: Crowd control + summoner
+
+47. Goldscale Hydra
+Origin: Ancient river temples
+HP: 900–1500
+Behavior: Multi-headed guardian
+Abilities:
+•	Golden Breath: Corrosive radiant flame
+•	Head Regrowth: Regenerates severed heads
+Threat: Extreme
+Weakness: Simultaneous head destruction
+Drops: Hydra Gold Scale
+Combat Style: Multi-attack destroyer
+
+48. Wraithbloom Orchid
+Origin: Spirit-haunted gardens
+HP: 60–100
+Behavior: Stationary lure
+Abilities:
+•	Spirit Drain Pollen
+•	Wail Petal: Psychic shock
+Threat: Medium
+Weakness: Fire
+Drops: Orchid Specter Petal
+Combat Style: Stationary controller
+
+49. Clockwork Ravener
+Origin: Time-worn automaton vaults
+HP: 380–520
+Behavior: Predictive combat algorithms
+Abilities:
+•	Temporal Dash: High-speed strike
+•	Gearstorm: Shrapnel burst
+Threat: High
+Weakness: Jam gears / magnetism
+Drops: Chrono-Gear
+Combat Style: Fast melee + shrapnel
+
+50. Deepcurrent Leviathan
+Origin: Abyssal ocean trenches
+HP: 2200–3000
+Behavior: Destroys ships
+Abilities:
+•	Tidal Roar: Tsunami-scale wave
+•	Pressure Crush: Massive grapple
+Threat: Catastrophic
+Weakness: Electrical overload
+Drops: Leviathan Heart
+Combat Style: Oceanic devastation
+
+51. Embercoil Viper
+Origin: Lava rivers
+HP: 90–130
+Behavior: Strikes then retreats
+Abilities:
+•	Burning Fang: Fire venom
+•	Heat Mirage: Creates illusions
+Threat: Medium
+Weakness: Frost
+Drops: Ember Fang
+Combat Style: Quick hit-and-run
+
+52. Nullmind Drone
+Origin: Psionic hive networks
+HP: 100–160
+Behavior: Hive-linked
+Abilities:
+•	Thought Null: Reduces INT-based abilities
+•	Psi Burst: AoE psychic shock
+Threat: Medium–High
+Weakness: Noise overload
+Drops: Nullmind Node
+Combat Style: Psi-disruption
+
+53. Coralcrown Nymph
+Origin: Reef kingdoms
+HP: 130–180
+Behavior: Protective of reefs
+Abilities:
+•	Water Spear
+•	Coral Growth: Creates barriers
+Threat: Medium
+Weakness: Pollution/acid spells
+Drops: Coral Crest
+Combat Style: Defensive caster
+
+54. Ironclad Scarab Lord
+Origin: Ancient desert ruins
+HP: 700–950
+Behavior: Commands scarab swarms
+Abilities:
+•	Sandstorm Shield: Ranged damage reduction
+•	Scarab Swarm: Summons minions
+Threat: Very High
+Weakness: Firebombs
+Drops: Lord’s Carapace
+Combat Style: Minion summoner + defense
+
+55. Void-Touched Harbinger
+Origin: Void star cult rituals
+HP: 500–700
+Behavior: Foretells calamity
+Abilities:
+•	Void Beam
+•	Entropy Pulse: Weakens armor
+Threat: Extreme
+Weakness: Reality-anchor runes
+Drops: Harbinger Sigil
+Combat Style: Heavy ranged void magic
+
+56. Great Ember Ape
+Origin: Burning jungle regions
+HP: 400–550
+Behavior: Territorial
+Abilities:
+•	Molten Fist
+•	Ash Roar: Blinds nearby targets
+Threat: High
+Weakness: Water
+Drops: Emberfur Hide
+Combat Style: Brutal melee + fire AoE
+
+57. Aurora Wisp
+Origin: Polar sky rifts
+HP: 30–50
+Behavior: Peaceful unless touched
+Abilities:
+•	Radiant Flash: Blind + small damage
+•	Aether Drift: Intangible movement
+Threat: Low
+Weakness: Void magic
+Drops: Aurora Essence
+Combat Style: Evasion + blinding
+
+58. Brinejaw Sharkfiend
+Origin: Corrupted sea caves
+HP: 260–330
+Behavior: Frenzied predator
+Abilities:
+•	Brine Bite: Corrosive damage
+•	Salt Spray: AoE blind
+Threat: High
+Weakness: Lightning
+Drops: Sharkfiend Tooth
+Combat Style: Burst melee + corrode
+
+59. Emberforge Minikin
+Origin: Volcanic sprite forges
+HP: 50–80
+Behavior: Tinkerer, mischievous
+Abilities:
+•	Spark Bolt
+•	Forge Ignite: Short fire buff
+Threat: Low–Medium
+Weakness: Water
+Drops: Emberforge Trinket
+Combat Style: Harassing caster
+
+60. Nethermaw Basilisk
+Origin: Deep nether labyrinths
+HP: 350–500
+Behavior: Stares from shadows
+Abilities:
+•	Petrifying Gaze
+•	Nether Spit: Corruption damage
+Threat: Very High
+Weakness: Mirror shields
+Drops: Basilisk Eye
+Combat Style: Gaze control + ranged DoT
