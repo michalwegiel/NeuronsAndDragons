@@ -1,3 +1,5 @@
+import random
+
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
@@ -31,9 +33,9 @@ console = Console()
 
 
 def attack(player: Player, enemy: Enemy) -> None:
-    weapon = max(player.inventory.weapons, key=lambda w: w.damage)
-    weapon_dmg = weapon.damage if weapon else 0
-    dmg = dice_roll("1d20") + weapon_dmg
+    player_dmg = player.calc_attack()
+    weapon = player.main_weapon()
+    dmg = dice_roll("1d20") + player_dmg
     enemy.hp -= dmg
     console.print(
         f"You strike {enemy.name} {f'with your {weapon.name} ' if weapon is not None else ''}"
@@ -42,8 +44,8 @@ def attack(player: Player, enemy: Enemy) -> None:
 
 
 def enemy_attack(player: Player, enemy: Enemy) -> None:
-    defense = max([armor.defense for armor in player.inventory.armors] + [0])
-    dmg = int(dice_roll(f"1d{enemy.attack_max}") * (1 - defense / 100))
+    player_defense = player.calc_defense()
+    dmg = round(dice_roll(f"1d{enemy.attack_max}") * (1 - player_defense / 25))
     player.damage(dmg)
     console.print(f"[red]{enemy.name} attacks you for {dmg} damage![/red]\n")
 
@@ -58,8 +60,9 @@ def potion(player: Player) -> None:
         console.print("[red]No potions left![/red]")
 
 
-def run(enemy: Enemy) -> bool:
-    if dice_roll("1d20") >= enemy.escape_difficulty:
+def run(player: Player, enemy: Enemy) -> bool:
+    player_escape = player.calc_escape()
+    if dice_roll("1d20") + player_escape >= enemy.escape_difficulty:
         console.print("[yellow]You manage to flee safely![/yellow]")
         return True
     console.print("[red]You fail to escape![/red]")
@@ -96,7 +99,7 @@ def combat(state: GameState) -> GameState:
         elif action == "use potion":
             potion(player=player)
         elif action == "run":
-            result = run(enemy=enemy)
+            result = run(player=player, enemy=enemy)
             if result:
                 state.scene_type = "narration"
                 state.history.append("Player fled from combat")

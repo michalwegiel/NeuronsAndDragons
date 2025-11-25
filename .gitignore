@@ -3,6 +3,9 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# RAG database
+chroma_langchain_db/
+
 # C extensions
 *.so
 

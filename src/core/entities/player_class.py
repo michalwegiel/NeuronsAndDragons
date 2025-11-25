@@ -29,3 +29,62 @@ class PlayerClass(str, Enum):
     @property
     def description(self):
         return self.__DESCRIPTIONS[self.value]
+
+
+class Ranger:
+    modifiers: dict[str, int] = {"attack": 1, "defense": 0, "escape": 4}
+
+
+class Fighter:
+    modifiers: dict[str, int] = {"attack": 5, "defense": 1, "escape": -1}
+
+
+class Wizard:
+    modifiers: dict[str, int] = {"attack": 2, "defense": 2, "escape": 1}
+
+
+class Cleric:
+    modifiers: dict[str, int] = {"attack": 2, "defense": -1, "escape": 4}
+
+
+class Rogue:
+    modifiers: dict[str, int] = {"attack": 0, "defense": 0, "escape": 5}
+
+
+class Paladin:
+    modifiers: dict[str, int] = {"attack": 3, "defense": 2, "escape": 0}
+
+
+class Warlock:
+    modifiers: dict[str, int] = {"attack": 4, "defense": 1, "escape": 0}
+
+
+class Bard:
+    modifiers: dict[str, int] = {"attack": 0, "defense": 2, "escape": 3}
+
+
+class Druid:
+    modifiers: dict[str, int] = {"attack": 1, "defense": 3, "escape": 1}
+
+
+class Barbarian:
+    modifiers: dict[str, int] = {"attack": 8, "defense": -2, "escape": -1}
+
+
+class_lookup = {
+    "Ranger": Ranger,
+    "Fighter": Fighter,
+    "Wizard": Wizard,
+    "Cleric": Cleric,
+    "Rogue": Rogue,
+    "Paladin": Paladin,
+    "Warlock": Warlock,
+    "Bard": Bard,
+    "Druid": Druid,
+    "Barbarian": Barbarian,
+}
+
+
+def get_class_modifiers(class_name: str) -> dict[str, int]:
+    p_class = class_lookup.get(class_name, Ranger)
+    return p_class.modifiers
