@@ -65,7 +65,12 @@ def exploration(state: GameState) -> GameState:
     if response.discoveries:
         console.print("[magenta]You notice the following discoveries:[/magenta]")
         for discovery in response.discoveries:
-            console.print(f"- {discovery}")
+            if isinstance(discovery, Item):
+                console.print(f"- {discovery.name} - {discovery.description} - {discovery.rarity}")
+                state.player.add_item(item=discovery)
+            else:
+                console.print(f"- {discovery}")
+        state.history.append(f"discoveries: {', '.join(response.discoveries)}")
         console.print("")
 
     list_available_player_choices(choices=response.player_actions)
@@ -75,11 +80,6 @@ def exploration(state: GameState) -> GameState:
     next_scene_type = response.next_scene_type[choice - 1]
     state.scene_type = next_scene_type
     state.history.append(f"exploration: {response.summary}")
-    if response.discoveries:
-        for discovery in response.discoveries:
-            if isinstance(discovery, Item):
-                state.player.add_item(item=discovery)
-        state.history.append(f"discoveries: {', '.join(response.discoveries)}")
     state.history.append(f"player action: {chosen_action}")
 
     SaveManager().save(state)
