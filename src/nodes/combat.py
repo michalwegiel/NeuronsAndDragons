@@ -26,8 +26,62 @@ class CombatSetup(BaseModel):
     )
 
 
+class UI:
+    def __init__(self):
+        self.console = Console()
+
+    def combat_intro(self, enemy: Enemy, narrative: str) -> None:
+        self.console.print(f"\n[bold red]⚔️ {enemy.name} appears![/bold red]")
+        self.console.print(narrative + "\n")
+        self.console.print(f"[dim]{enemy.description}[/dim]\n")
+
+    def display_status(self, player: Player, enemy: Enemy) -> None:
+        self.console.print(
+            f"[green]Your HP:[/green] {player.hp} | "
+            f"[red]{enemy.name} HP:[/red] {enemy.hp} | "
+            f"[yellow]Potions: {len(player.inventory.potions)}[/yellow]\n"
+        )
+
+    @staticmethod
+    def choose_action() -> str:
+        return Prompt.ask("Choose your action", choices=["attack", "use potion", "run"], default="attack")
+
+    def attack(self, enemy: Enemy, weapon: Weapon, dmg: int) -> None:
+        self.console.print(
+            f"You strike {enemy.name} {f'with your {weapon.name} ' if weapon is not None else ''}"
+            f"for [bold]{dmg}[/bold] damage!"
+        )
+
+    def enemy_attack(self, enemy: Enemy, dmg: int) -> None:
+        self.console.print(f"[red]{enemy.name} attacks you for {dmg} damage![/red]\n")
+
+    def potion(self, heal: int | None) -> None:
+        if heal is not None:
+            self.console.print(f"You drink a potion and recover [green]{heal}[/green] HP.")
+        else:
+            self.console.print("[red]No potions left![/red]")
+
+    def run(self, result: bool) -> None:
+        if result:
+            self.console.print("[yellow]You manage to flee safely![/yellow]")
+        else:
+            self.console.print("[red]You fail to escape![/red]")
+
+    def player_defeat(self) -> None:
+        self.console.print("[bold red]💀 You have been defeated![/bold red]")
+
+    def player_victory(self, enemy: Enemy) -> None:
+        self.console.print(f"[bold green]🏆 You defeated {enemy.name}![/bold green]")
+
+    def loot_info(self) -> None:
+        self.console.print("\n[bold yellow]You find some loot:[/bold yellow]")
+
+    def show_loot_item(self, item: Item) -> None:
+        self.console.print(f"• {item.name} ({item.rarity}) - {item.description or ''}")
+
+
 model = ChatOpenAI(model="gpt-5-nano", temperature=0.7).with_structured_output(CombatSetup)
-console = Console()
+ui = UI()
 
 
 def attack(player: Player, enemy: Enemy) -> None:
@@ -35,36 +89,32 @@ def attack(player: Player, enemy: Enemy) -> None:
     weapon = player.main_weapon()
     dmg = dice_roll("1d20") + player_dmg
     enemy.hp -= dmg
-    console.print(
-        f"You strike {enemy.name} {f'with your {weapon.name} ' if weapon is not None else ''}"
-        f"for [bold]{dmg}[/bold] damage!"
-    )
+    ui.attack(enemy=enemy, weapon=weapon, dmg=dmg)
 
 
 def enemy_attack(player: Player, enemy: Enemy) -> None:
     player_defense = player.calc_defense()
     dmg = round(dice_roll(f"1d{enemy.attack_max}") * (1 - player_defense / 25))
     player.damage(dmg)
-    console.print(f"[red]{enemy.name} attacks you for {dmg} damage![/red]\n")
+    ui.enemy_attack(enemy=enemy, dmg=dmg)
 
 
 def potion(player: Player) -> None:
+    heal = None
     if len(player.inventory.potions) > 0:
         pot = player.inventory.potions.pop()
         heal = pot.potency
         player.heal(heal)
-        console.print(f"You drink a potion and recover [green]{heal}[/green] HP.")
-    else:
-        console.print("[red]No potions left![/red]")
+    ui.potion(heal=heal)
 
 
 def run(player: Player, enemy: Enemy) -> bool:
     player_escape = player.calc_escape()
+    result = False
     if dice_roll("1d20") + player_escape >= enemy.escape_difficulty:
-        console.print("[yellow]You manage to flee safely![/yellow]")
-        return True
-    console.print("[red]You fail to escape![/red]")
-    return False
+        result = True
+    ui.run(result=result)
+    return result
 
 
 def combat(state: GameState) -> GameState:
@@ -79,19 +129,15 @@ def combat(state: GameState) -> GameState:
     )
 
     setup: CombatSetup = model.invoke(prompt)
-
-    console.print(f"\n[bold red]⚔️ {setup.enemy.name} appears![/bold red]")
-    console.print(setup.narrative + "\n")
-    console.print(f"[dim]{setup.enemy.description}[/dim]\n")
-
     player = state.player
     enemy = setup.enemy
+    narrative = setup.narrative
+
+    ui.combat_intro(enemy=enemy, narrative=narrative)
 
     while player.hp > 0 and enemy.hp > 0:
-        console.print(f"[green]Your HP:[/green] {player.hp} | [red]{enemy.name} HP:[/red] {enemy.hp}\n")
-
-        action = Prompt.ask("Choose your action", choices=["attack", "use potion", "run"], default="attack")
-
+        ui.display_status(player=player, enemy=enemy)
+        action = ui.choose_action()
         if action == "attack":
             attack(player=player, enemy=enemy)
         elif action == "use potion":
@@ -107,17 +153,17 @@ def combat(state: GameState) -> GameState:
             enemy_attack(player=player, enemy=enemy)
 
     if player.hp <= 0:
-        console.print("[bold red]💀 You have been defeated![/bold red]")
+        ui.player_defeat()
         state.history.append(f"Player was defeated by {enemy.name}")
     else:
-        console.print(f"[bold green]🏆 You defeated {enemy.name}![/bold green]")
+        ui.player_victory(enemy=enemy)
         state.history.append(f"Player defeated {enemy.name}")
 
         if setup.loot:
-            console.print("\n[bold yellow]You find some loot:[/bold yellow]")
+            ui.loot_info()
             for item in setup.loot:
-                console.print(f"• {item.name} ({item.rarity}) - {item.description or ''}")
-                state.player.add_item(item)
+                ui.show_loot_item(item=item)
+                state.player.add_item(item=item)
             state.history.append(f"Loot obtained: {[item.name for item in setup.loot]}")
 
     state.scene_type = "narration"
