@@ -63,4 +63,4 @@ class Player:
         self.hp = min(100, self.hp + amount)
 
     def describe(self) -> str:
-        return f"{self.race.value} {self.player_class.value} from a {self.origin.value} background."
+        return f"{self.race.value} {self.player_class.value} with a {self.origin.value} background."
