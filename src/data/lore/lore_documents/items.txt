@@ -718,6 +718,19 @@ Potions
 •	Effect: Restores health and heals wounds even if you are one step away from death.
 
 Artifacts
+0. Lost Relic
+•	Rarity: Legendary
+•	Description:
+Legends trace the Lost Relic to the Primefall Epoch, a vanished age whose ruins lie scattered beneath the Glasshaven Expanse.
+Explorers who unearthed fragments of its twin markings in the buried city of Namaris reported spectral figures observing them
+from parallel echoes—believed to be the extinct Veyl-Kin, a people who existed half within the Aether Veil.
+The Relic itself once rested in the vault of Archsage Serion, the last guardian capable of reading its shifting sigils,
+until he disappeared along the Path of Unmaking, leaving only a scorch imprint of his silhouette.
+Creatures sensitive to temporal distortions—especially Time-Worn Stalkers and Mirror Wraiths—are unnaturally drawn
+to the object, circling its holder like moths compelled by a flame they cannot comprehend.
+Some scholars of the Astral Convergence Academy insist the Relic is not singular but one of seven anchor shards,
+each tied to a place removed from history. If reunited, they might restore the erased realm—or collapse the boundary
+that keeps its horrors sealed away.
 1. Heart of the Fallen Aeon
 •	Rarity: Legendary
 •	Effect: Mutates the wielder; grants cosmic power.

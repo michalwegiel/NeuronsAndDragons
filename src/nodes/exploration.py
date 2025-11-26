@@ -70,7 +70,9 @@ def exploration(state: GameState) -> GameState:
                 state.player.add_item(item=discovery)
             else:
                 console.print(f"- {discovery}")
-        state.history.append(f"discoveries: {', '.join(response.discoveries)}")
+        state.history.append(
+            f"discoveries: {', '.join(discovery for discovery in response.discoveries if isinstance(discovery, str))}"
+        )
         console.print("")
 
     list_available_player_choices(choices=response.player_actions)

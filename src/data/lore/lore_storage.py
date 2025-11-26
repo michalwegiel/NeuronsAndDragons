@@ -41,7 +41,7 @@ def get_vector_store():
                 }
             )
 
-    splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
+    splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=150)
     doc_chunks = []
     for d in all_docs:
         for chunk in splitter.split_text(d["text"]):
