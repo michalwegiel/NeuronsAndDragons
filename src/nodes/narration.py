@@ -53,6 +53,7 @@ def narration(state: GameState) -> GameState:
                 "Respond strictly following the SceneUpdate schema.\n"
                 "RULES:\n"
                 "- Always push the story forward. Avoid repeating similar actions or loops.\n"
+                "- Avoid providing similar options or situations that are included in campaign history.\n"
                 "- Avoid giving the same exploration choices repeatedly.\n"
                 "- Provide meaningful narrative progression.\n"
                 "- Create camp option if player has lower hp than 50.\n"

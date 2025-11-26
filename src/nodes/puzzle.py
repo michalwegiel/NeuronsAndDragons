@@ -28,7 +28,7 @@ class PuzzleUpdate(BaseModel):
 
 
 console = Console()
-model = ChatOpenAI(model=MODEL_NAME, temperature=0.7).with_structured_output(PuzzleUpdate)
+model = ChatOpenAI(model=MODEL_NAME, temperature=0.9).with_structured_output(PuzzleUpdate)
 
 
 def puzzle(state: GameState) -> GameState:
@@ -44,6 +44,7 @@ def puzzle(state: GameState) -> GameState:
         "- next_scene_type must reflect the consequences.\n"
         "- Allowed next scenes: narration, combat, dialogue.\n"
         "- If puzzle is successfully solved, story should progress.\n"
+        "- Avoid repeating puzzles from history, ALWAYS come up with a new puzzle.\n"
         "- Respond strictly using PuzzleUpdate schema.\n\n"
         f"Current game state:\n{state_str}\n"
     )
@@ -54,6 +55,7 @@ def puzzle(state: GameState) -> GameState:
     console.print(f"[yellow]{response.puzzle_prompt}[/yellow]\n")
 
     state.history.append(f"dungeon master: {response.summary}")
+    state.history.append(f"puzzle: {response.puzzle_prompt}")
 
     list_available_player_choices(choices=[option.text for option in response.options])
     choice = get_player_choice("Your answer", len(response.options))
