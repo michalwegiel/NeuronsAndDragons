@@ -1,3 +1,4 @@
+import random
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
@@ -52,8 +53,11 @@ class UI:
             f"for [bold]{dmg}[/bold] damage!"
         )
 
-    def enemy_attack(self, enemy: Enemy, dmg: int) -> None:
-        self.console.print(f"[red]{enemy.name} attacks you for {dmg} damage![/red]\n")
+    def enemy_attack(self, enemy: Enemy, dmg: int, critical_hit: bool = False) -> None:
+        if critical_hit:
+            self.console.print(f"[bold red]{enemy.name} lands a CRITICAL HIT for {dmg} damage!![/bold red]\n")
+        else:
+            self.console.print(f"[red]{enemy.name} attacks you for {dmg} damage![/red]\n")
 
     def potion(self, heal: int | None) -> None:
         if heal is not None:
@@ -84,6 +88,10 @@ model = ChatOpenAI(model="gpt-5-nano", temperature=0.7).with_structured_output(C
 ui = UI()
 
 
+def is_critical_hit(critical_chance: int) -> bool:
+    return random.randint(1, 100) <= critical_chance
+
+
 def attack(player: Player, enemy: Enemy) -> None:
     player_dmg = player.calc_attack()
     weapon = player.main_weapon()
@@ -94,9 +102,11 @@ def attack(player: Player, enemy: Enemy) -> None:
 
 def enemy_attack(player: Player, enemy: Enemy) -> None:
     player_defense = player.calc_defense()
-    dmg = round(dice_roll(f"1d{enemy.attack_max}") * (1 - player_defense / 25))
+    is_critical = is_critical_hit(critical_chance=enemy.critical_hit_chance)
+    dmg_modifier = 2 if is_critical else 1
+    dmg = round(dice_roll(f"{enemy.attacks_per_turn}d{enemy.attack_max}") * dmg_modifier * (1 - player_defense / 25))
     player.damage(dmg)
-    ui.enemy_attack(enemy=enemy, dmg=dmg)
+    ui.enemy_attack(enemy=enemy, dmg=dmg, critical_hit=is_critical)
 
 
 def potion(player: Player) -> None:
