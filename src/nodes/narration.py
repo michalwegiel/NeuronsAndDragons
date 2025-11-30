@@ -37,6 +37,9 @@ class SceneUpdate(BaseModel):
     location: Optional[str] = Field(
         default=None, description="If the player moves to a new location, specify the new location name."
     )
+    weather: Optional[str] = Field(
+        default=None, description="If weather changes, specify a new weather."
+    )
 
 
 model = ChatOpenAI(model=MODEL_NAME, temperature=0.9).with_structured_output(SceneUpdate)
@@ -73,10 +76,12 @@ def narration(state: GameState) -> GameState:
     user_options = response.user_options
     next_scene_type = response.next_scene_type
     location = response.location
+    weather = response.weather
 
     console.print(f"\n{narrative}\n")
     state.history.append(f"dungeon master: {summary}")
     state.world.location = location if location is not None else state.world.location
+    state.world.weather = weather if weather is not None else state.world.weather
 
     list_available_player_choices(choices=user_options)
     choice = get_player_choice("Your action", len(user_options))
