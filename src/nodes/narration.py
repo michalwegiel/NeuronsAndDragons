@@ -37,9 +37,7 @@ class SceneUpdate(BaseModel):
     location: Optional[str] = Field(
         default=None, description="If the player moves to a new location, specify the new location name."
     )
-    weather: Optional[str] = Field(
-        default=None, description="If weather changes, specify a new weather."
-    )
+    weather: Optional[str] = Field(default=None, description="If weather changes, specify a new weather.")
 
 
 model = ChatOpenAI(model=MODEL_NAME, temperature=0.9).with_structured_output(SceneUpdate)
