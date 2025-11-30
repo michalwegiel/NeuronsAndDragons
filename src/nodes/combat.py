@@ -181,6 +181,7 @@ def combat(state: GameState) -> GameState:
             attack(player=player, enemy=enemy)
         elif action == "use potion":
             potion(player=player)
+            continue
         elif action == "run":
             result = run(player=player, enemy=enemy)
             if result:
