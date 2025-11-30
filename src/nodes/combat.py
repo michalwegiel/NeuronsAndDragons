@@ -9,6 +9,7 @@ from rich.prompt import Prompt
 
 from core import GameState
 from core.entities import Enemy, Item, Weapon, Potion, Armor, Player
+from core.entities.enemy import SpecialAttack
 from core.save import SaveManager
 from nodes.utils import dice_roll
 
@@ -53,11 +54,17 @@ class UI:
             f"for [bold]{dmg}[/bold] damage!"
         )
 
-    def enemy_attack(self, enemy: Enemy, dmg: int, critical_hit: bool = False) -> None:
+    def enemy_attack(self, enemy: Enemy, dmg: int, critical_hit: bool) -> None:
         if critical_hit:
             self.console.print(f"[bold red]{enemy.name} lands a CRITICAL HIT for {dmg} damage!![/bold red]\n")
         else:
             self.console.print(f"[red]{enemy.name} attacks you for {dmg} damage![/red]\n")
+
+    def enemy_special_attack(self, enemy: Enemy, dmg: int, special_attack: SpecialAttack, critical_hit: bool) -> None:
+        if critical_hit:
+            self.console.print(f"[bold red]CRITICAL HIT!!![/bold red]")
+        self.console.print(f"[bold magenta]{enemy.name} uses SPECIAL ATTACK: {special_attack.name}![/bold magenta]")
+        self.console.print(f"[magenta]{special_attack.description} It deals {dmg} damage![/magenta]\n")
 
     def potion(self, heal: int | None) -> None:
         if heal is not None:
@@ -100,13 +107,35 @@ def attack(player: Player, enemy: Enemy) -> None:
     ui.attack(enemy=enemy, weapon=weapon, dmg=dmg)
 
 
-def enemy_attack(player: Player, enemy: Enemy) -> None:
+def enemy_normal_attack(player: Player, enemy: Enemy) -> None:
     player_defense = player.calc_defense()
     is_critical = is_critical_hit(critical_chance=enemy.critical_hit_chance)
     dmg_modifier = 2 if is_critical else 1
     dmg = round(dice_roll(f"{enemy.attacks_per_turn}d{enemy.attack_max}") * dmg_modifier * (1 - player_defense / 25))
     player.damage(dmg)
     ui.enemy_attack(enemy=enemy, dmg=dmg, critical_hit=is_critical)
+
+
+def enemy_special_attack(player: Player, enemy: Enemy, special_attack: SpecialAttack) -> None:
+    player_defense = player.calc_defense()
+    is_critical = is_critical_hit(critical_chance=enemy.critical_hit_chance)
+
+    critical_hit_dmg_modifier = 2 if is_critical else 1
+    special_attack_dmg_modifier = special_attack.dmg_multiplier
+    dmg_modifier = critical_hit_dmg_modifier * special_attack_dmg_modifier
+    dmg = round(dice_roll(f"1d{enemy.attack_max}") * dmg_modifier * (1 - player_defense / 25))
+    player.damage(dmg)
+    enemy.reset_special_attack_cooldown(special_attack=special_attack)
+
+    ui.enemy_special_attack(enemy=enemy, dmg=dmg, special_attack=special_attack, critical_hit=is_critical)
+
+
+def enemy_attack(player: Player, enemy: Enemy) -> None:
+    special_attack = enemy.pick_special_attack()
+    if special_attack:
+        enemy_special_attack(player=player, enemy=enemy, special_attack=special_attack)
+    enemy_normal_attack(player=player, enemy=enemy)
+    enemy.reduce_special_attacks_cooldown()
 
 
 def potion(player: Player) -> None:
