@@ -62,7 +62,7 @@ class UI:
 
     def enemy_special_attack(self, enemy: Enemy, dmg: int, special_attack: SpecialAttack, critical_hit: bool) -> None:
         if critical_hit:
-            self.console.print(f"[bold red]CRITICAL HIT!!![/bold red]")
+            self.console.print("[bold red]CRITICAL HIT!!![/bold red]")
         self.console.print(f"[bold magenta]{enemy.name} uses SPECIAL ATTACK: {special_attack.name}![/bold magenta]")
         self.console.print(f"[magenta]{special_attack.description} It deals {dmg} damage![/magenta]\n")
 
