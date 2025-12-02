@@ -5,14 +5,46 @@ from core import GameState
 from nodes import narration, combat, dialogue, exploration, camp, puzzle
 
 
+NODE_MAP = {
+    "narration": narration,
+    "exploration": exploration,
+    "combat": combat,
+    "dialogue": dialogue,
+    "camp": camp,
+    "puzzle": puzzle,
+}
+
+
 def build_graph(start_node: str = "narration") -> CompiledStateGraph:
+    """
+    Build and compile the game's state graph (StateGraph) based on 'GameState'.
+
+    This function registers all scene nodes, defines transition rules using the
+    'next_from_scene' dispatcher, sets the entry point, and compiles the graph into
+    a 'CompiledStateGraph' instance ready to be executed by LangGraph.
+
+    Parameters
+    ----------
+    start_node: str, optional
+        Name of the initial graph node to be used as the entry point.
+        Defaults to "narration". Must match one of the registered nodes.
+
+    Returns
+    -------
+    CompiledStateGraph
+        A compiled LangGraph state machine ready to execute scene transitions based on 'GameState' updates.
+
+    Notes
+    -----
+    - The transition logic is centralized in the internal 'next_from_scene' function,
+      which evaluates 'state.exit' and 'state.scene_type'.
+    - If 'state.exit' is 'True', the graph transitions to 'END'.
+    - If 'state.scene_type' does not match any known scene, it is automatically corrected to "narration".
+    - Conditional edges for each scene define which scenes can follow, including transitions to 'END' when allowed.
+    """
     graph = StateGraph(GameState)
-    graph.add_node("narration", narration)
-    graph.add_node("exploration", exploration)
-    graph.add_node("combat", combat)
-    graph.add_node("dialogue", dialogue)
-    graph.add_node("camp", camp)
-    graph.add_node("puzzle", puzzle)
+    for name, fn in NODE_MAP.items():
+        graph.add_node(name, fn)
 
     def next_from_scene(state: GameState):
         if state.exit is True:
