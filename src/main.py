@@ -18,6 +18,7 @@ save_manager = SaveManager(save_dir=os.getenv("SAVE_DIR"))
 
 
 def initial_state() -> GameState:
+    """Initializes starting game state"""
     player = create_player()
     return GameState(
         player=player,
