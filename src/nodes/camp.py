@@ -62,13 +62,13 @@ def camp(state: GameState) -> GameState:
     restored = state.player.hp - before
     console.print(f"[green]You recover {restored} HP.[/green]\n")
 
-    state.history.append(f"dungeon master: {response.summary}")
+    state.append_history(f"dungeon master: {response.summary}")
 
     list_available_player_choices(choices=response.user_options)
     choice = get_player_choice("Your action", len(response.user_options))
 
     state.scene_type = response.next_scene_type[choice - 1]
-    state.history.append(f"player action: {response.user_options[choice - 1]}")
+    state.append_history(f"player action: {response.user_options[choice - 1]}")
 
     SaveManager().save(state)
     return state

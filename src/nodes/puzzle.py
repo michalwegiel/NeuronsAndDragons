@@ -54,20 +54,20 @@ def puzzle(state: GameState) -> GameState:
     console.print(f"\n{response.narrative}\n")
     console.print(f"[yellow]{response.puzzle_prompt}[/yellow]\n")
 
-    state.history.append(f"dungeon master: {response.summary}")
-    state.history.append(f"puzzle: {response.puzzle_prompt}")
+    state.append_history(f"dungeon master: {response.summary}")
+    state.append_history(f"puzzle: {response.puzzle_prompt}")
 
     list_available_player_choices(choices=[option.text for option in response.options])
     choice = get_player_choice("Your answer", len(response.options))
     choice = response.options[choice - 1]
-    state.history.append(f"player action: {choice.text}")
+    state.append_history(f"player action: {choice.text}")
 
     if choice.correct:
         console.print("[green]You solved the puzzle![/green]\n")
-        state.history.append("player solved the puzzle")
+        state.append_history("player solved the puzzle")
     else:
         console.print("[red]Your attempt fails.[/red]\n")
-        state.history.append("player failed to solve the puzzle")
+        state.append_history("player failed to solve the puzzle")
 
     state.scene_type = choice.next_scene_type
 

@@ -1,4 +1,5 @@
 from collections import deque
+from itertools import islice
 from typing import Literal, Any
 from pydantic import BaseModel, field_serializer, field_validator, Field
 
@@ -58,3 +59,50 @@ class GameState(BaseModel):
     @classmethod
     def deserialize_deque(cls, value: Any) -> deque:
         return deque(value, maxlen=HISTORY_LENGTH)
+
+    def append_history(self, s: str) -> None:
+        """
+        Append a new narration entry to the history deque.
+
+        Parameters
+        ----------
+        s: str
+            Text string representing the latest narration line.
+        """
+        self.history.append(s)
+
+    def get_history(self, limit: int = 10) -> list[str]:
+        """
+        Return the most recent history entries up to a specified limit.
+
+        Parameters
+        ----------
+        limit: int, optional
+            Maximum number of history records to return from the right side
+            of the deque. Default is 10.
+
+        Returns
+        -------
+        list[str]
+            A list containing up to 'limit' most recent narration entries.
+        """
+        return list(islice(reversed(self.history), limit))
+
+    def remove_history(self, records: int = 10) -> None:
+        """
+        Remove a number of oldest entries from the history.
+
+        Parameters
+        ----------
+        records: int, optional
+            Number of records to remove starting from the oldest entries.
+            Default is 10.
+
+        Notes
+        -----
+        This operation modifies the internal `history` deque in place by
+        removing entries from the left side of the deque.
+        """
+        for _ in range(records):
+            if self.history:
+                self.history.popleft()

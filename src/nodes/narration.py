@@ -77,7 +77,7 @@ def narration(state: GameState) -> GameState:
     weather = response.weather
 
     console.print(f"\n{narrative}\n")
-    state.history.append(f"dungeon master: {summary}")
+    state.append_history(f"dungeon master: {summary}")
     state.world.location = location if location is not None else state.world.location
     state.world.weather = weather if weather is not None else state.world.weather
 
@@ -85,7 +85,7 @@ def narration(state: GameState) -> GameState:
     choice = get_player_choice("Your action", len(user_options))
 
     state.scene_type = next_scene_type[choice - 1]
-    state.history.append(f"player action: {user_options[choice - 1]}")
+    state.append_history(f"player action: {user_options[choice - 1]}")
 
     SaveManager().save(state)
     return state

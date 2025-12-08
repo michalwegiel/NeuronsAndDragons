@@ -186,7 +186,7 @@ def combat(state: GameState) -> GameState:
             result = run(player=player, enemy=enemy)
             if result:
                 state.scene_type = "narration"
-                state.history.append("Player fled from combat")
+                state.append_history("Player fled from combat")
                 return state
 
         if enemy.hp > 0:
@@ -194,17 +194,17 @@ def combat(state: GameState) -> GameState:
 
     if player.hp <= 0:
         ui.player_defeat()
-        state.history.append(f"Player was defeated by {enemy.name}")
+        state.append_history(f"Player was defeated by {enemy.name}")
     else:
         ui.player_victory(enemy=enemy)
-        state.history.append(f"Player defeated {enemy.name}")
+        state.append_history(f"Player defeated {enemy.name}")
 
         if setup.loot:
             ui.loot_info()
             for item in setup.loot:
                 ui.show_loot_item(item=item)
                 state.player.add_item(item=item)
-            state.history.append(f"Loot obtained: {[item.name for item in setup.loot]}")
+            state.append_history(f"Loot obtained: {[item.name for item in setup.loot]}")
 
     state.scene_type = "narration"
     SaveManager().save(state)

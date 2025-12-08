@@ -55,7 +55,7 @@ def exploration(state: GameState) -> GameState:
         "If the recent scenes contain a lot of exploration, bias strongly toward narration/dialogue now.\n"
         "If a threat is imminent, allow combat as a branch but not the only non-exploration option.\n\n"
         f"Current game state (JSON):\n{state_str}\n"
-        f"\nRecent events (last 10):\n{list(islice(state.history, 10))}\n"
+        f"\nRecent events (last 10):\n{state.get_history(limit=10)}\n"
     )
 
     response: ExplorationUpdate = model.invoke(prompt)
