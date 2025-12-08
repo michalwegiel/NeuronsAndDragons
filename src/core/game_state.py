@@ -86,7 +86,7 @@ class GameState(BaseModel):
         list[str]
             A list containing up to 'limit' most recent narration entries.
         """
-        return list(islice(reversed(self.history), limit))
+        return list(islice(reversed(self.history), limit))[::-1]
 
     def remove_history(self, records: int = 10) -> None:
         """
