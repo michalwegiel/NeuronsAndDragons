@@ -1,5 +1,3 @@
-from itertools import islice
-
 from pydantic import BaseModel, Field
 from typing import Literal, Optional
 from langchain_openai import ChatOpenAI
