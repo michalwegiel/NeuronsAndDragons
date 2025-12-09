@@ -162,8 +162,13 @@ def combat(state: GameState) -> GameState:
         "You are the Dungeon Master in a fantasy text RPG called 'Neurons & Dragons'.\n"
         "The player is about to enter combat.\n"
         "Generate the enemy they are about to face, the introduction narrative, and possible loot.\n"
-        "Adjust difficulty to feel fair based on game state.\n"
-        "Respond using the CombatSetup schema.\n\n"
+        "Difficulty rules:\n"
+        "- Enemy should be reasonably beatable and scale approximately to the player’s current power. "
+        "However, if the story context suggests arrogance, risk, curiosity, warnings ignored, "
+        "or a clearly dangerous location or enemy type, then it is valid (and narratively appropriate) "
+        "for the enemy to be significantly stronger. In such cases, emphasize the danger in the narrative "
+        "and make it clear that the player may attempt to fight or retreat.\n"
+        "Output strictly using the CombatSetup schema (no extra fields, no commentary).\n\n"
         f"Current game state:\n{state_str}\n"
     )
 
