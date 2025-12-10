@@ -30,10 +30,9 @@ class Player:
             return max(self.inventory.weapons, key=lambda w: w.damage)
 
     def drop_weapon(self) -> Weapon | None:
-        main_weapon = self.main_weapon()
-        if main_weapon is not None:
-            weapon_index = self.inventory.weapons.index(main_weapon)
-            weapon = self.inventory.weapons.pop(weapon_index)
+        weapon = self.main_weapon()
+        if weapon:
+            self.inventory.weapons.remove(weapon)
             return weapon
 
     def calc_attack(self) -> int:
