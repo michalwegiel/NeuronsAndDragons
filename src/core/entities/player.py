@@ -36,7 +36,7 @@ class Player:
             weapon = self.inventory.weapons.pop(weapon_index)
             return weapon
 
-    def calc_attack(self):
+    def calc_attack(self) -> int:
         class_dmg = self._calc_skill("attack")
 
         weapon_dmg = 0
@@ -46,7 +46,7 @@ class Player:
 
         return class_dmg + weapon_dmg
 
-    def calc_defense(self):
+    def calc_defense(self) -> int:
         class_def = self._calc_skill("defense")
 
         armor_def = 0
@@ -56,17 +56,17 @@ class Player:
 
         return class_def + armor_def
 
-    def calc_escape(self):
+    def calc_escape(self) -> int:
         class_escape = self._calc_skill("escape")
         return class_escape
 
-    def add_item(self, item: Item):
+    def add_item(self, item: Item) -> None:
         self.inventory.add(item)
 
-    def damage(self, amount: int):
+    def damage(self, amount: int) -> None:
         self.hp = max(0, self.hp - amount)
 
-    def heal(self, amount: int):
+    def heal(self, amount: int) -> None:
         self.hp = min(100, self.hp + amount)
 
     def describe(self) -> str:
