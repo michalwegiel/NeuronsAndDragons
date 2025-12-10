@@ -78,8 +78,10 @@ class UI:
         else:
             self.console.print("[red]You fail to escape![/red]")
 
-    def player_defeat(self) -> None:
+    def player_defeat(self, lost_weapon: Weapon) -> None:
         self.console.print("[bold red]💀 You have been defeated![/bold red]")
+        if lost_weapon:
+            self.console.print(f"[bold red]You have lost {lost_weapon.name}![/bold red]")
 
     def player_victory(self, enemy: Enemy) -> None:
         self.console.print(f"[bold green]🏆 You defeated {enemy.name}![/bold green]")
@@ -198,7 +200,8 @@ def combat(state: GameState) -> GameState:
             enemy_attack(player=player, enemy=enemy)
 
     if player.hp <= 0:
-        ui.player_defeat()
+        lost_weapon = player.drop_weapon()
+        ui.player_defeat(lost_weapon=lost_weapon)
         state.append_history(f"Player was defeated by {enemy.name}")
     else:
         ui.player_victory(enemy=enemy)
