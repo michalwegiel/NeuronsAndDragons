@@ -16,7 +16,7 @@ class Player:
     origin: Origin
     hp: int = 100
     inventory: Inventory = field(default_factory=Inventory)
-    modifiers: dict[str, int] | None = None
+    modifiers: dict[str, int] = field(init=False)
 
     def __post_init__(self):
         self.modifiers = get_class_modifiers(self.player_class.name)
