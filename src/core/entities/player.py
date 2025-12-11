@@ -15,6 +15,7 @@ class Player:
     race: Race
     origin: Origin
     hp: int = 100
+    max_hp: int = 100
     inventory: Inventory = field(default_factory=Inventory)
     modifiers: dict[str, int] = field(init=False)
 
@@ -38,10 +39,8 @@ class Player:
     def calc_attack(self) -> int:
         class_dmg = self._calc_skill("attack")
 
-        weapon_dmg = 0
-        if self.inventory.weapons:
-            weapon = self.main_weapon()
-            weapon_dmg = weapon.damage
+        weapon = self.main_weapon()
+        weapon_dmg = weapon.damage if weapon else 0
 
         return class_dmg + weapon_dmg
 
@@ -56,8 +55,7 @@ class Player:
         return class_def + armor_def
 
     def calc_escape(self) -> int:
-        class_escape = self._calc_skill("escape")
-        return class_escape
+        return self._calc_skill("escape")
 
     def add_item(self, item: Item) -> None:
         self.inventory.add(item)
@@ -66,7 +64,7 @@ class Player:
         self.hp = max(0, self.hp - amount)
 
     def heal(self, amount: int) -> None:
-        self.hp = min(100, self.hp + amount)
+        self.hp = min(self.max_hp, self.hp + amount)
 
     def describe(self) -> str:
         return f"{self.race.value} {self.player_class.value} with a {self.origin.value} background."
