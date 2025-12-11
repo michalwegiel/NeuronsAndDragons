@@ -14,6 +14,14 @@ class SpecialAttack(BaseModel):
 
 
 class Enemy(BaseModel):
+    """
+    Represents an enemy encountered by the player during combat.
+
+    The Enemy model holds basic combat attributes such as HP, attack ranges,
+    and critical hit chance, as well as a list of special attacks with their
+    own cooldown and trigger mechanics.
+    """
+
     name: str = Field(description="Enemy name, e.g., 'Goblin Scout' or 'Fire Elemental'")
     description: str = Field(description="Short description of enemy appearance or demeanor")
     hp: int = Field(description="Enemy health points (HP), must be > 0")
@@ -26,9 +34,29 @@ class Enemy(BaseModel):
     _special_attacks_cooldown: dict[str, int] = PrivateAttr(default_factory=dict)
 
     def model_post_init(self, __context):
+        """
+        Initialize internal cooldown tracker after model creation.
+
+        For each special attack, a cooldown counter is created and set to
+        the attack's defined cooldown value. Cooldown will be decremented
+        each turn and reset when an attack is used.
+        """
         self._special_attacks_cooldown = {atk.name: atk.cooldown for atk in self.special_attacks}
 
     def pick_special_attack(self) -> SpecialAttack | None:
+        """
+        Attempt to select a special attack that is off cooldown and passes its chance roll.
+
+        The procedure:
+        1. Filter attacks whose cooldown is 0 (ready to use).
+        2. For each eligible attack, roll a random percent (1–100).
+        3. Return the first attack that passes its 'chance' threshold.
+        4. If none succeed, return None.
+
+        Returns:
+            SpecialAttack | None:
+                The triggered special attack, or None if no attack triggers or none are off cooldown.
+        """
         available = [atk for atk in self.special_attacks if self._special_attacks_cooldown.get(atk.name, 0) == 0]
 
         if not available:
@@ -41,9 +69,11 @@ class Enemy(BaseModel):
         return None
 
     def reset_special_attack_cooldown(self, special_attack: SpecialAttack) -> None:
+        """Reset the cooldown timer for a special attack after it has been used."""
         self._special_attacks_cooldown[special_attack.name] = special_attack.cooldown
 
     def reduce_special_attacks_cooldown(self) -> None:
+        """Reduce cooldown timers for all special attacks by 1 (used at the end of each turn)."""
         for name, cooldown in self._special_attacks_cooldown.items():
             if cooldown > 0:
                 self._special_attacks_cooldown[name] -= 1
