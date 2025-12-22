@@ -86,5 +86,21 @@ class_lookup = {
 
 
 def get_class_modifiers(class_name: str) -> dict[str, int]:
+    """
+    Retrieve stat modifiers for a given character class.
+
+    The function looks up the class by name and returns its associated stat modifiers.
+    If the class name is not found, the Ranger class is used as a default.
+
+    Parameters
+    ----------
+    class_name: str
+        Name of the character class.
+
+    Returns
+    -------
+    dict[str, int]
+        A dictionary mapping stat names to their modifier values.
+    """
     p_class = class_lookup.get(class_name, Ranger)
     return p_class.modifiers
