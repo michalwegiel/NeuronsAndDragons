@@ -17,6 +17,42 @@ COLLECTION = "lore"
 
 
 def get_vector_store():
+    """
+    Initialize or load a persistent Chroma vector store containing embedded lore documents.
+
+    The function performs the following steps:
+    1. Loads OpenAI embeddings using the `text-embedding-3-large` model.
+    2. Checks whether a persisted Chroma collection already exists.
+       - If it exists and contains documents, it is loaded and returned.
+       - Otherwise, lore documents are loaded from disk, split into chunks,
+         embedded, and stored in a new Chroma collection.
+    3. Persists the vector store locally for future reuse.
+
+    Supported file formats:
+        - .txt
+        - .md
+
+    Text splitting strategy:
+        - Recursive character-based splitting
+        - Chunk size: 800 characters
+        - Chunk overlap: 150 characters
+
+    Metadata stored with each document chunk:
+        - path: Full file system path to the source file
+        - module: Relative directory under the lore root
+        - file: File name of the source document
+
+    Returns:
+        Chroma:
+            A Chroma vector store instance backed by persistent storage,
+            ready to be used for similarity search or retrieval-augmented generation (RAG).
+
+    Notes:
+        - Environment variables (including OpenAI API key) must be loaded
+          prior to calling this function.
+        - This function is idempotent: calling it multiple times will reuse
+          the existing vector store if it already exists.
+    """
     db_exists = os.path.exists(PERSIST_DIR) and len(os.listdir(PERSIST_DIR)) > 0
 
     embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
