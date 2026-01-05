@@ -3,6 +3,7 @@ import random
 
 from core.entities.item import Item, Weapon
 from core.entities.inventory import Inventory
+from core.entities.level import Level
 from core.entities.origin import Origin
 from core.entities.race import Race
 from core.entities.player_class import PlayerClass, get_class_modifiers
@@ -27,6 +28,7 @@ class Player:
     max_hp: int = 100
     inventory: Inventory = field(default_factory=Inventory)
     modifiers: dict[str, int] = field(init=False)
+    level: Level = Level()
 
     def __post_init__(self):
         """
@@ -57,6 +59,9 @@ class Player:
         """
         modifier = self.modifiers.get(skill_name, 0)
         return random.randint(0, modifier) if modifier > 0 else random.randint(modifier, 0)
+
+    def gain_experience(self, amount: int) -> None:
+        self.level.gain_experience(amount)
 
     def main_weapon(self) -> Weapon | None:
         """
