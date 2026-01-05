@@ -205,6 +205,7 @@ def combat(state: GameState) -> GameState:
         state.append_history(f"Player was defeated by {enemy.name}")
     else:
         ui.player_victory(enemy=enemy)
+        player.gain_experience(amount=100)
         state.append_history(f"Player defeated {enemy.name}")
 
         if setup.loot:

@@ -52,6 +52,7 @@ def dialogue(state: GameState) -> GameState:
     state.scene_type = next_scene_type
     state.append_history(f"npc {response.npc_name}: {response.summary}")
     state.append_history(f"player reply: {chosen_reply}")
+    state.player.gain_experience(amount=10)
 
     SaveManager().save(state)
     return state

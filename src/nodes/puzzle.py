@@ -65,6 +65,7 @@ def puzzle(state: GameState) -> GameState:
     if choice.correct:
         console.print("[green]You solved the puzzle![/green]\n")
         state.append_history("player solved the puzzle")
+        state.player.gain_experience(amount=100)
     else:
         console.print("[red]Your attempt fails.[/red]\n")
         state.append_history("player failed to solve the puzzle")

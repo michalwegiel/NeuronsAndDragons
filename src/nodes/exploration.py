@@ -81,6 +81,7 @@ def exploration(state: GameState) -> GameState:
     state.scene_type = next_scene_type
     state.history.append(f"exploration: {response.summary}")
     state.history.append(f"player action: {chosen_action}")
+    state.player.gain_experience(amount=25)
 
     SaveManager().save(state)
     return state
