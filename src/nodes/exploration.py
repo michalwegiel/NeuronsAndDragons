@@ -64,7 +64,7 @@ def exploration(state: GameState) -> GameState:
         console.print("[magenta]You notice the following discoveries:[/magenta]")
         for discovery in response.discoveries:
             if isinstance(discovery, Item):
-                console.print(f"- {discovery.name} - {discovery.description} - {discovery.rarity}")
+                console.print(f"- {discovery.name} ({discovery.rarity}) - {discovery.description}")
                 state.player.add_item(item=discovery)
             else:
                 console.print(f"- {discovery}")
