@@ -9,25 +9,101 @@ console = Console()
 
 
 class ExperienceCurve(ABC):
+    """
+    Abstract base class representing an experience (XP) progression curve.
+
+    Subclasses define how much experience is required to reach the next level
+    based on the current level.
+    """
+
     @abstractmethod
     def xp_for_next_level(self, level: int) -> int:
+        """
+        Calculate the experience points required to advance to the next level.
+
+        Parameters
+        ----------
+        level: int
+            Current level of the entity.
+
+        Returns
+        -------
+        int
+            Amount of experience points required to reach the next level.
+        """
         pass
 
 
 class LinearCurve(ExperienceCurve):
+    """
+    Linear experience progression curve.
+
+    The experience required for each level is constant and does not depend on the current level.
+    """
+
     def __init__(self, base_xp: int = 100):
+        """
+        Initialize a linear experience curve.
+
+        Parameters
+        ----------
+        base_xp: int
+            Fixed amount of experience required for each level, by default 100.
+        """
         self.base_xp = base_xp
 
     def xp_for_next_level(self, level: int) -> int:
+        """
+        Return the experience required for the next level.
+
+        Parameters
+        ----------
+        level: int
+            Current level.
+
+        Returns
+        -------
+        int
+            Fixed amount of experience required to level up.
+        """
         return self.base_xp
 
 
 class ExponentialCurve(ExperienceCurve):
+    """
+    Exponential experience progression curve.
+
+    The experience required increases exponentially with each level.
+    """
+
     def __init__(self, base_xp: int = 100, multiplier: float = 1.2):
+        """
+        Initialize an exponential experience curve.
+
+        Parameters
+        ----------
+        base_xp: int
+            Base amount of experience required for the first level, by default 100.
+        multiplier: float
+            Growth factor applied per level, by default 1.2.
+        """
         self.base_xp = base_xp
         self.multiplier = multiplier
 
     def xp_for_next_level(self, level: int) -> int:
+        """
+        Return the experience required for the next level.
+
+        Parameters
+        ----------
+        level: int
+            Current level.
+
+        Returns
+        -------
+        int
+            Experience required to advance to the next level, calculated using an exponential formula.
+        """
         return int(self.base_xp * (self.multiplier ** (level - 1)))
 
 
