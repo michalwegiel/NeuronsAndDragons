@@ -28,7 +28,7 @@ class PuzzleUpdate(BaseModel):
 
 
 console = Console()
-model = ChatOpenAI(model=MODEL_NAME, temperature=0.9).with_structured_output(PuzzleUpdate)
+model = ChatOpenAI(model=MODEL_NAME, temperature=1.0).with_structured_output(PuzzleUpdate)
 
 
 def puzzle(state: GameState) -> GameState:
