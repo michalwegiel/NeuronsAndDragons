@@ -42,6 +42,9 @@ class Level(BaseModel):
     _curve: ExperienceCurve = PrivateAttr(default_factory=ExponentialCurve)
     _on_level_up: list[Callable] = PrivateAttr(default_factory=list)
 
+    def __eq__(self, other) -> bool:
+        return isinstance(other, Level) and self.level == other.level and self.experience == other.experience
+
     def model_post_init(self, __context):
         self._on_level_up.append(level_up_message_callback)
 
