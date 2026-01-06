@@ -108,6 +108,18 @@ class ExponentialCurve(ExperienceCurve):
 
 
 def level_up_message_callback(level: int) -> None:
+    """
+    Display a level-up message in the console.
+
+    This callback function is intended to be triggered when a player
+    advances to a new level. It prints a formatted message to the console
+    indicating the achieved level.
+
+    Parameters
+    ----------
+    level: int
+        The new level reached by the player.
+    """
     console.print(f"[bold green]Level up! Player reached level {level}![/bold green]")
 
 
