@@ -64,7 +64,7 @@ class UI:
         if critical_hit:
             self.console.print("[bold red]CRITICAL HIT!!![/bold red]")
         self.console.print(f"[bold magenta]{enemy.name} uses SPECIAL ATTACK: {special_attack.name}![/bold magenta]")
-        self.console.print(f"[magenta]{special_attack.description} It deals {dmg} damage![/magenta]\n")
+        self.console.print(f"[bold magenta]{special_attack.description} It deals {dmg} damage![/bold magenta]\n")
 
     def potion(self, heal: int | None) -> None:
         if heal is not None:
