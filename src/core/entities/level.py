@@ -124,6 +124,14 @@ def level_up_message_callback(level: int) -> None:
 
 
 class Level(BaseModel):
+    """
+    Model representing a leveling system with experience accumulation.
+
+    The 'Level' class tracks the current level and experience points of an entity.
+    It supports configurable experience curves and level-up callbacks that are
+    triggered whenever a new level is reached.
+    """
+
     level: int = 1
     experience: int = 0
 
@@ -133,10 +141,24 @@ class Level(BaseModel):
     def __eq__(self, other) -> bool:
         return isinstance(other, Level) and self.level == other.level and self.experience == other.experience
 
-    def model_post_init(self, __context):
+    def model_post_init(self, __context) -> None:
+        """
+        Perform post-initialization setup for the model.
+
+        This method registers default level-up callbacks after the Pydantic
+        model has been fully initialized.
+        """
         self._on_level_up.append(level_up_message_callback)
 
     def gain_experience(self, amount: int) -> None:
+        """
+        Add experience points and process any resulting level-ups.
+
+        Parameters
+        ----------
+        amount: int
+            Amount of experience points to add. Must be non-negative.
+        """
         if amount < 0:
             raise ValueError("Experience amount cannot be negative")
 
@@ -144,14 +166,34 @@ class Level(BaseModel):
         self._process_level_ups()
 
     def _process_level_ups(self) -> None:
+        """
+        Process all level-ups resulting from accumulated experience.
+
+        This method repeatedly checks whether the current experience exceeds
+        the threshold for the next level and applies level increases until
+        the experience is below the required amount.
+        """
         while self.experience >= self._xp_needed():
             self.experience -= self._xp_needed()
             self.level += 1
             self._emit_level_up()
 
     def _xp_needed(self) -> int:
+        """
+        Calculate the experience required to reach the next level.
+
+        Returns
+        -------
+        int
+            Experience points required for the next level.
+        """
         return self._curve.xp_for_next_level(self.level)
 
     def _emit_level_up(self) -> None:
+        """
+        Invoke all registered level-up callbacks.
+
+        Each callback is called with the newly reached level as its argument.
+        """
         for callback in self._on_level_up:
             callback(self.level)
