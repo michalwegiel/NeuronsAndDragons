@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from dataclasses import dataclass, field
+from pydantic import BaseModel, PrivateAttr
 from rich.console import Console
 from typing import Callable
 
@@ -35,15 +35,15 @@ def level_up_message_callback(level: int) -> None:
     console.print(f"[bold green]Level up! Player reached level {level}![/bold green]")
 
 
-@dataclass
-class Level:
+class Level(BaseModel):
     level: int = 1
     experience: int = 0
-    curve: ExperienceCurve = field(default_factory=ExponentialCurve)
-    on_level_up: list[Callable] = field(default_factory=list)
 
-    def __post_init__(self):
-        self.on_level_up.append(level_up_message_callback)
+    _curve: ExperienceCurve = PrivateAttr(default_factory=ExponentialCurve)
+    _on_level_up: list[Callable] = PrivateAttr(default_factory=list)
+
+    def model_post_init(self, __context):
+        self._on_level_up.append(level_up_message_callback)
 
     def gain_experience(self, amount: int) -> None:
         if amount < 0:
@@ -59,8 +59,8 @@ class Level:
             self._emit_level_up()
 
     def _xp_needed(self) -> int:
-        return self.curve.xp_for_next_level(self.level)
+        return self._curve.xp_for_next_level(self.level)
 
     def _emit_level_up(self) -> None:
-        for callback in self.on_level_up:
+        for callback in self._on_level_up:
             callback(self.level)

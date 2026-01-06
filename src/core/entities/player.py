@@ -26,9 +26,9 @@ class Player:
     origin: Origin
     hp: int = 100
     max_hp: int = 100
+    level: Level = field(default_factory=Level)
     inventory: Inventory = field(default_factory=Inventory)
     modifiers: dict[str, int] = field(init=False)
-    level: Level = Level()
 
     def __post_init__(self):
         """
