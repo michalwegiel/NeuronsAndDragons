@@ -160,7 +160,7 @@ class Level(BaseModel):
             Amount of experience points to add. Must be non-negative.
         """
         if amount < 0:
-            raise ValueError("Experience amount cannot be negative")
+            raise ValueError(f"Experience amount cannot be negative, got {amount}.")
 
         self.experience += amount
         self._process_level_ups()

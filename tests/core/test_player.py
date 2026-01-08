@@ -116,3 +116,8 @@ def test_describe(player):
     player.origin.value = "Sailor"
 
     assert player.describe() == "Gnome Ranger with a Sailor background."
+
+
+def test_gain_experience(player):
+    player.gain_experience(amount=101)
+    assert player.level.level == 2
