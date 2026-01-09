@@ -18,21 +18,31 @@ console = Console()
 
 
 class SceneUpdate(BaseModel):
-    narrative: str = Field(description="Story text to display to the player describing what happens next.")
-    summary: str = Field(description="One line summary of scene narrative. Used for history aggregation.")
+    narrative: str = Field(
+        description=(
+            "Detailed story text shown to the player describing what happens next in the scene. "
+            "Write in present or past tense, immersive and descriptive."
+        )
+    )
+    summary: str = Field(
+        description=(
+            "A single concise sentence summarizing the scene outcome. "
+            "Used for history aggregation and logs. Do not include dialogue."
+        )
+    )
     user_options: list[str] = Field(
         description=(
-            "List of possible actions the player can take next. "
-            "Each option should be a short, self-contained string describing the action. "
-            "Depending on situation, user should have at least 2 options and no more than 5."
+            "List of actions the player can choose from next. "
+            "Each option must be a short, self-contained sentence describing a single action. "
+            "Provide between 2 and 5 options."
         )
     )
     next_scene_type: list[Literal["narration", "exploration", "combat", "dialogue", "camp"]] = Field(
         description=(
-            "A list of appropriate scene types that should occur based on player choice. "
-            "Each user option should have corresponding outcome scene type. "
+            "Scene type that results from choosing each user option. "
+            "This list must have the same length and order as user_options. "
             "Used by the engine to branch the story."
-        ),
+        )
     )
     location: Optional[str] = Field(
         default=None, description="If the player moves to a new location, specify the new location name."
