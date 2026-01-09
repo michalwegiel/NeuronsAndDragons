@@ -60,21 +60,31 @@ def narration(state: GameState) -> GameState:
     prompt = ChatPromptTemplate(
         [
             SystemMessage(
-                "You are the Dungeon Master in a fantasy text RPG called 'Neurons & Dragons'.\n"
-                "Generate the next scene based on the current game state below.\n"
-                "Respond strictly following the SceneUpdate schema.\n"
-                "RULES:\n"
-                "- Always push the story forward. Avoid repeating similar actions or loops.\n"
-                "- Avoid providing similar options or situations that are included in campaign history.\n"
-                "- Avoid giving the same exploration choices repeatedly.\n"
-                "- Provide meaningful narrative progression.\n"
-                "- Create camp option if player has lower hp than 50.\n"
-                "- user_options must be 2–5 items.\n"
-                "- next_scene_type MUST have exactly the same length as user_options.\n"
-                "- next_scene_type choices should vary depending on the action, not repeat.\n"
-                "- If player is stuck, introduce a new development (NPC, danger, discovery).\n"
+                "LLM CONTRACT: SceneUpdate\n"
+                "You must generate a JSON object that strictly conforms to the SceneUpdate schema.\n\n"
+                "GENERAL RULES\n"
+                "- Output JSON only. No explanations, comments, or markdown.\n"
+                "- Follow the schema exactly.\n"
+                "- Do not invent fields.\n"
+                "- Omit optional fields if they do not change.\n\n"
+                "STRUCTURAL RULES\n"
+                "- user_options must contain 2 to 5 items.\n"
+                "- next_scene_type must have the same length and order as user_options.\n"
+                "- Each user option must logically match its scene type.\n\n"
+                "OPTIONAL FIELDS\n"
+                "- location: only if location changes.\n"
+                "- weather: only if weather changes.\n"
+                "- quest: only if quest updates, or changes.\n\n"
             ),
-            HumanMessagePromptTemplate.from_template("Current game state:\n{state}"),
+            SystemMessage(
+                "You are the Dungeon Master in a fantasy RPG called 'Neurons & Dragons'.\n"
+                "Always push the story forward.\n"
+                "Avoid repetition and loops.\n"
+                "Avoid offering similar choices to previous scenes.\n"
+                "Introduce new NPCs, dangers, or discoveries if progress stalls.\n"
+                "If player HP < 50, one option MUST allow rest or recovery (camp).\n"
+            ),
+            HumanMessagePromptTemplate.from_template("Current game state (JSON):\n{state}"),
         ]
     )
     chain = prompt | model
