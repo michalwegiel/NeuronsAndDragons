@@ -40,7 +40,7 @@ def puzzle(state: GameState) -> GameState:
         "- Output JSON only.\n"
         "- Do not include explanations or commentary.\n"
         "- Follow the schema exactly.\n"
-        "- Do not include solution explanations.\n"       
+        "- Do not include solution explanations.\n"
         "PUZZLE DESIGN RULES:\n"
         "- The puzzle must be solvable using logic or observation from the text.\n"
         "- Do not reveal which option is correct.\n"
